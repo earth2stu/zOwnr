@@ -1,0 +1,481 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20F7DFB71535829700CD391B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB61535829700CD391B /* UIKit.framework */; };
+		20F7DFB91535829700CD391B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB81535829700CD391B /* Foundation.framework */; };
+		20F7DFBB1535829700CD391B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFBA1535829700CD391B /* CoreGraphics.framework */; };
+		20F7DFC11535829700CD391B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFBF1535829700CD391B /* InfoPlist.strings */; };
+		20F7DFC31535829700CD391B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F7DFC21535829700CD391B /* main.m */; };
+		20F7DFC71535829700CD391B /* ZNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F7DFC61535829700CD391B /* ZNAppDelegate.m */; };
+		20F7DFCA1535829700CD391B /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFC81535829700CD391B /* MainStoryboard_iPhone.storyboard */; };
+		20F7DFCD1535829700CD391B /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFCB1535829700CD391B /* MainStoryboard_iPad.storyboard */; };
+		20F7DFD01535829700CD391B /* ZNFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F7DFCF1535829700CD391B /* ZNFirstViewController.m */; };
+		20F7DFD21535829700CD391B /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFD11535829700CD391B /* first.png */; };
+		20F7DFD41535829700CD391B /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFD31535829700CD391B /* first@2x.png */; };
+		20F7DFD71535829700CD391B /* ZNSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F7DFD61535829700CD391B /* ZNSecondViewController.m */; };
+		20F7DFD91535829700CD391B /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFD81535829700CD391B /* second.png */; };
+		20F7DFDB1535829700CD391B /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFDA1535829700CD391B /* second@2x.png */; };
+		20F7DFE31535829700CD391B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFE21535829700CD391B /* SenTestingKit.framework */; };
+		20F7DFE41535829700CD391B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB61535829700CD391B /* UIKit.framework */; };
+		20F7DFE51535829700CD391B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB81535829700CD391B /* Foundation.framework */; };
+		20F7DFED1535829700CD391B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFEB1535829700CD391B /* InfoPlist.strings */; };
+		20F7DFF01535829700CD391B /* zOwnrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F7DFEF1535829700CD391B /* zOwnrTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		20F7DFE61535829700CD391B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20F7DFA91535829700CD391B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20F7DFB11535829700CD391B;
+			remoteInfo = zOwnr;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		20F7DFB21535829700CD391B /* zOwnr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zOwnr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F7DFB61535829700CD391B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		20F7DFB81535829700CD391B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		20F7DFBA1535829700CD391B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		20F7DFBE1535829700CD391B /* zOwnr-Info.plist */ = {isa = PBXFileReference; path = "zOwnr-Info.plist"; sourceTree = "<group>"; };
+		20F7DFC01535829700CD391B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		20F7DFC21535829700CD391B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		20F7DFC41535829700CD391B /* zOwnr-Prefix.pch */ = {isa = PBXFileReference; path = "zOwnr-Prefix.pch"; sourceTree = "<group>"; };
+		20F7DFC51535829700CD391B /* ZNAppDelegate.h */ = {isa = PBXFileReference; path = ZNAppDelegate.h; sourceTree = "<group>"; };
+		20F7DFC61535829700CD391B /* ZNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNAppDelegate.m; sourceTree = "<group>"; };
+		20F7DFC91535829700CD391B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		20F7DFCC1535829700CD391B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		20F7DFCE1535829700CD391B /* ZNFirstViewController.h */ = {isa = PBXFileReference; path = ZNFirstViewController.h; sourceTree = "<group>"; };
+		20F7DFCF1535829700CD391B /* ZNFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNFirstViewController.m; sourceTree = "<group>"; };
+		20F7DFD11535829700CD391B /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		20F7DFD31535829700CD391B /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		20F7DFD51535829700CD391B /* ZNSecondViewController.h */ = {isa = PBXFileReference; path = ZNSecondViewController.h; sourceTree = "<group>"; };
+		20F7DFD61535829700CD391B /* ZNSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNSecondViewController.m; sourceTree = "<group>"; };
+		20F7DFD81535829700CD391B /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		20F7DFDA1535829700CD391B /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		20F7DFE11535829700CD391B /* zOwnrTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zOwnrTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		20F7DFE21535829700CD391B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		20F7DFEA1535829700CD391B /* zOwnrTests-Info.plist */ = {isa = PBXFileReference; path = "zOwnrTests-Info.plist"; sourceTree = "<group>"; };
+		20F7DFEC1535829700CD391B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		20F7DFEE1535829700CD391B /* zOwnrTests.h */ = {isa = PBXFileReference; path = zOwnrTests.h; sourceTree = "<group>"; };
+		20F7DFEF1535829700CD391B /* zOwnrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zOwnrTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20F7DFAF1535829700CD391B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F7DFB71535829700CD391B /* UIKit.framework in Frameworks */,
+				20F7DFB91535829700CD391B /* Foundation.framework in Frameworks */,
+				20F7DFBB1535829700CD391B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20F7DFDD1535829700CD391B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F7DFE31535829700CD391B /* SenTestingKit.framework in Frameworks */,
+				20F7DFE41535829700CD391B /* UIKit.framework in Frameworks */,
+				20F7DFE51535829700CD391B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20F7DFA71535829700CD391B = {
+			isa = PBXGroup;
+			children = (
+				20F7DFBC1535829700CD391B /* zOwnr */,
+				20F7DFE81535829700CD391B /* zOwnrTests */,
+				20F7DFB51535829700CD391B /* Frameworks */,
+				20F7DFB31535829700CD391B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20F7DFB31535829700CD391B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20F7DFB21535829700CD391B /* zOwnr.app */,
+				20F7DFE11535829700CD391B /* zOwnrTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20F7DFB51535829700CD391B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20F7DFB61535829700CD391B /* UIKit.framework */,
+				20F7DFB81535829700CD391B /* Foundation.framework */,
+				20F7DFBA1535829700CD391B /* CoreGraphics.framework */,
+				20F7DFE21535829700CD391B /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20F7DFBC1535829700CD391B /* zOwnr */ = {
+			isa = PBXGroup;
+			children = (
+				20F7DFC51535829700CD391B /* ZNAppDelegate.h */,
+				20F7DFC61535829700CD391B /* ZNAppDelegate.m */,
+				20F7DFC81535829700CD391B /* MainStoryboard_iPhone.storyboard */,
+				20F7DFCB1535829700CD391B /* MainStoryboard_iPad.storyboard */,
+				20F7DFCE1535829700CD391B /* ZNFirstViewController.h */,
+				20F7DFCF1535829700CD391B /* ZNFirstViewController.m */,
+				20F7DFD11535829700CD391B /* first.png */,
+				20F7DFD31535829700CD391B /* first@2x.png */,
+				20F7DFD51535829700CD391B /* ZNSecondViewController.h */,
+				20F7DFD61535829700CD391B /* ZNSecondViewController.m */,
+				20F7DFD81535829700CD391B /* second.png */,
+				20F7DFDA1535829700CD391B /* second@2x.png */,
+				20F7DFBD1535829700CD391B /* Supporting Files */,
+			);
+			path = zOwnr;
+			sourceTree = "<group>";
+		};
+		20F7DFBD1535829700CD391B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20F7DFBE1535829700CD391B /* zOwnr-Info.plist */,
+				20F7DFBF1535829700CD391B /* InfoPlist.strings */,
+				20F7DFC21535829700CD391B /* main.m */,
+				20F7DFC41535829700CD391B /* zOwnr-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20F7DFE81535829700CD391B /* zOwnrTests */ = {
+			isa = PBXGroup;
+			children = (
+				20F7DFEE1535829700CD391B /* zOwnrTests.h */,
+				20F7DFEF1535829700CD391B /* zOwnrTests.m */,
+				20F7DFE91535829700CD391B /* Supporting Files */,
+			);
+			path = zOwnrTests;
+			sourceTree = "<group>";
+		};
+		20F7DFE91535829700CD391B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				20F7DFEA1535829700CD391B /* zOwnrTests-Info.plist */,
+				20F7DFEB1535829700CD391B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20F7DFB11535829700CD391B /* zOwnr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20F7DFF31535829700CD391B /* Build configuration list for PBXNativeTarget "zOwnr" */;
+			buildPhases = (
+				20F7DFAE1535829700CD391B /* Sources */,
+				20F7DFAF1535829700CD391B /* Frameworks */,
+				20F7DFB01535829700CD391B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = zOwnr;
+			productName = zOwnr;
+			productReference = 20F7DFB21535829700CD391B /* zOwnr.app */;
+			productType = "com.apple.product-type.application";
+		};
+		20F7DFE01535829700CD391B /* zOwnrTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20F7DFF61535829700CD391B /* Build configuration list for PBXNativeTarget "zOwnrTests" */;
+			buildPhases = (
+				20F7DFDC1535829700CD391B /* Sources */,
+				20F7DFDD1535829700CD391B /* Frameworks */,
+				20F7DFDE1535829700CD391B /* Resources */,
+				20F7DFDF1535829700CD391B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				20F7DFE71535829700CD391B /* PBXTargetDependency */,
+			);
+			name = zOwnrTests;
+			productName = zOwnrTests;
+			productReference = 20F7DFE11535829700CD391B /* zOwnrTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20F7DFA91535829700CD391B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Cytrasoft Pty Ltd";
+			};
+			buildConfigurationList = 20F7DFAC1535829700CD391B /* Build configuration list for PBXProject "zOwnr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 20F7DFA71535829700CD391B;
+			productRefGroup = 20F7DFB31535829700CD391B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20F7DFB11535829700CD391B /* zOwnr */,
+				20F7DFE01535829700CD391B /* zOwnrTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20F7DFB01535829700CD391B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F7DFC11535829700CD391B /* InfoPlist.strings in Resources */,
+				20F7DFCA1535829700CD391B /* MainStoryboard_iPhone.storyboard in Resources */,
+				20F7DFCD1535829700CD391B /* MainStoryboard_iPad.storyboard in Resources */,
+				20F7DFD21535829700CD391B /* first.png in Resources */,
+				20F7DFD41535829700CD391B /* first@2x.png in Resources */,
+				20F7DFD91535829700CD391B /* second.png in Resources */,
+				20F7DFDB1535829700CD391B /* second@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20F7DFDE1535829700CD391B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F7DFED1535829700CD391B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20F7DFDF1535829700CD391B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20F7DFAE1535829700CD391B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F7DFC31535829700CD391B /* main.m in Sources */,
+				20F7DFC71535829700CD391B /* ZNAppDelegate.m in Sources */,
+				20F7DFD01535829700CD391B /* ZNFirstViewController.m in Sources */,
+				20F7DFD71535829700CD391B /* ZNSecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20F7DFDC1535829700CD391B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20F7DFF01535829700CD391B /* zOwnrTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		20F7DFE71535829700CD391B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 20F7DFB11535829700CD391B /* zOwnr */;
+			targetProxy = 20F7DFE61535829700CD391B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		20F7DFBF1535829700CD391B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20F7DFC01535829700CD391B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		20F7DFC81535829700CD391B /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20F7DFC91535829700CD391B /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		20F7DFCB1535829700CD391B /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20F7DFCC1535829700CD391B /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		20F7DFEB1535829700CD391B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20F7DFEC1535829700CD391B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20F7DFF11535829700CD391B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20F7DFF21535829700CD391B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20F7DFF41535829700CD391B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "zOwnr/zOwnr-Prefix.pch";
+				INFOPLIST_FILE = "zOwnr/zOwnr-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		20F7DFF51535829700CD391B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "zOwnr/zOwnr-Prefix.pch";
+				INFOPLIST_FILE = "zOwnr/zOwnr-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		20F7DFF71535829700CD391B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/zOwnr.app/zOwnr";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "zOwnr/zOwnr-Prefix.pch";
+				INFOPLIST_FILE = "zOwnrTests/zOwnrTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		20F7DFF81535829700CD391B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/zOwnr.app/zOwnr";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "zOwnr/zOwnr-Prefix.pch";
+				INFOPLIST_FILE = "zOwnrTests/zOwnrTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20F7DFAC1535829700CD391B /* Build configuration list for PBXProject "zOwnr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F7DFF11535829700CD391B /* Debug */,
+				20F7DFF21535829700CD391B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20F7DFF31535829700CD391B /* Build configuration list for PBXNativeTarget "zOwnr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F7DFF41535829700CD391B /* Debug */,
+				20F7DFF51535829700CD391B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		20F7DFF61535829700CD391B /* Build configuration list for PBXNativeTarget "zOwnrTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20F7DFF71535829700CD391B /* Debug */,
+				20F7DFF81535829700CD391B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 20F7DFA91535829700CD391B /* Project object */;
+}
