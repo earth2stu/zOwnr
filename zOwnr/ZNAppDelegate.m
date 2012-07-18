@@ -7,6 +7,7 @@
 //
 
 #import "ZNAppDelegate.h"
+#import "ZownrService.h"
 
 @implementation ZNAppDelegate
 
@@ -15,6 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[ZownrService sharedInstance] initModel];
     return YES;
 }
 							

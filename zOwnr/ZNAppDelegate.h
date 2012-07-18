@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBConnect.h"
 
 @interface ZNAppDelegate : UIResponder <UIApplicationDelegate>
 

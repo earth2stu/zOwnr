@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
 @interface ZNFirstViewController : UIViewController
 
