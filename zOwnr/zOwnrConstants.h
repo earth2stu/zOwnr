@@ -17,14 +17,53 @@
 
 #endif
 
+typedef enum {
+    kScreenModeBrowseEvents,
+    kScreenModeSingleEvent
+} kScreenMode;
+
+typedef enum {
+    kQuadrantEdgeTop,
+    kQuadrantEdgeBottom,
+    kQuadrantEdgeLeft,
+    kQuadrantEdgeRight
+} kQuadrantEdge;
+
+typedef enum {
+    kQuadrantCornerTopLeft,
+    kQuadrantCornerTopRight,
+    kQuadrantCornerBottomLeft,
+    kQuadrantCornerBottomRight,
+    kQuadrantCornerCentre
+} kQuadrantCorner;
+
+
+
+static const int kMainEdgeViewHeight = 45;
+
 static const int kTLlocationHeight = 50;
 static const int kTLlocationOffset = 70;
 static const int kTLlocationSelectedHeight = 200;
 static const int kTLtopMargin = 45;
-static const int kTLleftMargin = 80;
+static const int kTLleftMargin = 0;
+
+static const kQuadrantCorner kQuadrantCornerDefault = kQuadrantCornerTopLeft;
+
+static const int kEdgeViewOverlap = 50;
+
+static NSString *kZNSessionIDKey = @"ZNSessionID";
+static NSString *kZNCurrentUserIDKey = @"ZNCurrentUserID";
+static NSString *kZNChangeSelectionKey = @"ZNChangeSelection";
 
 typedef struct {
     GLKVector3      vertex;
     GLKVector3      normal;
     GLKVector2      texCoord;
 } ZNTexturedVertexData3D;
+
+@protocol ZNSelectable <NSObject>
+
+//
+
+@end
+

@@ -12,5 +12,6 @@
 @interface ZNAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) Facebook *facebook;
 
 @end

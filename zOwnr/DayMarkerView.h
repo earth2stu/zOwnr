@@ -1,14 +1,14 @@
 //
-//  HourMarkerView.h
+//  DayMarkerView.h
 //  zOwnr
 //
-//  Created by Stuart Watkins on 9/04/12.
+//  Created by Stuart Watkins on 23/07/12.
 //  Copyright (c) 2012 Cytrasoft Pty Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface HourMarkerView : UIView {
+@interface DayMarkerView : UIView {
     NSDate *time;
     NSDate *startTime;
     NSNumber *pixelsPerHour;

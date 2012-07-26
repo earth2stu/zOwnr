@@ -16,6 +16,7 @@
 
 @protocol EventLocationDelegate <NSObject>
 
+- (void)selectEventLocation:(EventLocation*)l fromFrame:(CGRect)fromFrame;
 - (void)selectEventItem:(EventItem*)e fromFrame:(CGRect)fromFrame inLocationView:(EventLocationTimelineView*)locationView;
 
 @end

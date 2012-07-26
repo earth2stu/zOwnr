@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Cytrasoft Pty Ltd. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "TimelineView.h"
@@ -15,14 +16,14 @@
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData.h>
 
-#import "ZNQuadrantView.h"
+#import "ZNLogoView.h"
 
 
-@interface ZNEventViewController : UIViewController <UIScrollViewDelegate, RKObjectLoaderDelegate, TimelineDelegate, MKMapViewDelegate, QuadrantDelegate>  {
+@interface ZNEventViewController : UIViewController <UIScrollViewDelegate, RKObjectLoaderDelegate, TimelineDelegate, MKMapViewDelegate, ZNLogoViewDelegate>  {
     IBOutlet UIScrollView *timelineScroll;
     IBOutlet UIScrollView *eventScroll;
     
-    IBOutlet ZNQuadrantView *quadrantView;
+    IBOutlet ZNLogoView *quadrantView;
     
     IBOutlet MKMapView *mapView;
     

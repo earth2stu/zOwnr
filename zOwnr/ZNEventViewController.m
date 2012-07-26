@@ -6,7 +6,14 @@
 //  Copyright (c) 2012 Cytrasoft Pty Ltd. All rights reserved.
 //
 
+
 #import "ZNEventViewController.h"
+#import "Event.h"
+#import "EventLocation.h"
+#import "EventLocationAnnotation.h"
+#import "EventAnnotationView.h"
+#import "UserMedia.h"
+#import "UserMediaAnnotation.h"
 
 @implementation ZNEventViewController
 
@@ -42,7 +49,7 @@
     quadrantView.delegate = self;
     
     [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/events/1" delegate:self];
-    
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:@"/eventItems/18/usermedia" delegate:self];
 }
 
 - (void)viewDidUnload
@@ -58,10 +65,43 @@
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
+/*
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObject:(id)object {
-    event = (Event*)object;
-    NSLog(@"got event: %@", event.name);
-    [self initEvent];
+    
+    if ([objectLoader.resourcePath isEqualToString:@"/events/1"]) {
+        event = (Event*)object;
+        NSLog(@"got event: %@", event.name);
+        [self initEvent];
+    } else {
+        // assuming the 
+        
+        
+        
+    }
+    
+    
+    
+}
+ */
+
+
+- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
+    
+    if ([objectLoader.resourcePath isEqualToString:@"/events/1"]) {
+        event = (Event*)[objects objectAtIndex:0];;
+        NSLog(@"got event: %@", event.name);
+        [self initEvent];
+    } else {
+        // assuming the 
+        
+        for (UserMedia *um in objects) {
+            UserMediaAnnotation *v = [[UserMediaAnnotation alloc] initWithUserMedia:um];
+            [mapView addAnnotation:v];
+        }
+
+        
+    }
+
     
 }
 
@@ -77,7 +117,113 @@
     t.delegate = self;
     [timelineScroll addSubview:t];
     [t didScroll:timelineScroll];
+    
+    for (EventLocation *l in event.eventLocations) {
+        //
+        EventLocationAnnotation *ann = [[EventLocationAnnotation alloc] initWithLocation:l];
+        [mapView addAnnotation:ann];
+    }
+    
+    CLLocationCoordinate2D coordinateOrigin = CLLocationCoordinate2DMake([event.latitudeNW doubleValue], [event.longitudeNW doubleValue]);
+    CLLocationCoordinate2D coordinateMax = CLLocationCoordinate2DMake([event.latitudeSE doubleValue], [event.longitudeSE doubleValue]);
+    
+    MKMapPoint upperLeft = MKMapPointForCoordinate(coordinateOrigin);
+    MKMapPoint lowerRight = MKMapPointForCoordinate(coordinateMax);
+    
+    MKMapRect mapRect = MKMapRectMake(upperLeft.x,
+                                      upperLeft.y,
+                                      lowerRight.x - upperLeft.x,
+                                      lowerRight.y - upperLeft.y);
+    
+    
+    [mapView setVisibleMapRect:mapRect animated:YES];
+    
+    mapView.showsUserLocation = YES;
 }
+
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // if it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    /*
+    // handle our two custom annotations
+    //
+    if ([annotation isKindOfClass:[PersonAnnotation class]]) // for Golden Gate Bridge
+    {
+        // try to dequeue an existing pin view first
+        static NSString* BridgeAnnotationIdentifier = @"bridgeAnnotationIdentifier";
+        MKPinAnnotationView* pinView = (MKPinAnnotationView *)
+        [mapview dequeueReusableAnnotationViewWithIdentifier:BridgeAnnotationIdentifier];
+        if (!pinView)
+        {
+            // if an existing pin view was not available, create one
+            MKPinAnnotationView* customPinView = [[MKPinAnnotationView alloc]
+                                                  initWithAnnotation:annotation reuseIdentifier:BridgeAnnotationIdentifier];
+            customPinView.pinColor = MKPinAnnotationColorPurple;
+            customPinView.animatesDrop = YES;
+            customPinView.canShowCallout = YES;
+            
+            // add a detail disclosure button to the callout which will open a new view controller page
+            //
+            // note: you can assign a specific call out accessory view, or as MKMapViewDelegate you can implement:
+            //  - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control;
+            //
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self
+                            action:@selector(showDetails:)
+                  forControlEvents:UIControlEventTouchUpInside];
+            customPinView.rightCalloutAccessoryView = rightButton;
+            
+            return customPinView;
+        }
+        else
+        {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    */
+    
+    if ([annotation isKindOfClass:[EventLocationAnnotation class]]) {
+        EventLocationAnnotation *fa = (EventLocationAnnotation*)annotation;
+        EventLocation *f = fa.location;
+        
+        EventAnnotationView *av = [[EventAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"location"];
+        
+        
+        //MKAnnotationView *av = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"stage"];
+        //UIImage *icon = [[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/facility_%@.png", [[NSBundle mainBundle] bundlePath], @"stage"]];
+        //UIImageView *iconView = [[UIImageView alloc] initWithImage:icon];
+        //[av addSubview:iconView];
+        av.canShowCallout = YES;
+        return av;
+    }
+    
+    if ([annotation isKindOfClass:[UserMediaAnnotation class]]) {
+        //UserMediaAnnotation *fa = (UserMediaAnnotation*)annotation;
+        //UserMedia *m = fa.userMedia;
+        
+        EventAnnotationView *av = [[EventAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"media"];
+        
+        
+        //MKAnnotationView *av = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"stage"];
+        //UIImage *icon = [[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/facility_%@.png", [[NSBundle mainBundle] bundlePath], @"stage"]];
+        //UIImageView *iconView = [[UIImageView alloc] initWithImage:icon];
+        //[av addSubview:iconView];
+        av.canShowCallout = YES;
+        return av;
+    }
+    
+    
+    
+    
+    return nil;
+}
+
 
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView {

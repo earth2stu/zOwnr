@@ -13,6 +13,8 @@
 #import "EventLocation.h"
 #import "User.h"
 #import "UserMedia.h"
+#import "FBLogin.h"
+#import "Session.h"
 
 //#import "ZNObjectCache.h"
 
@@ -59,12 +61,11 @@
     
     [RKObjectMapping addDefaultDateFormatter:[RKDotNetDateFormatter dotNetDateFormatter]];
     
+    
+    
+    // EVENT MAPPING
+    
     RKManagedObjectMapping *eventMapping = [RKManagedObjectMapping mappingForEntityWithName:@"Event" inManagedObjectStore:store];
-    
-    
-    
-    
-    
     
     //[eventMapping mappingForSourceKeyPath:@"Events"];
     
@@ -87,8 +88,7 @@
     
     
     
-    
-    // EVENTLOCATION
+    // EVENT LOCATION
     RKManagedObjectMapping* eventLocationMapping = [RKManagedObjectMapping mappingForEntityWithName:@"EventLocation" inManagedObjectStore:objectManager.objectStore];
     eventLocationMapping.primaryKeyAttribute = @"eventLocationID";
     [eventLocationMapping mapKeyPath:@"eventLocationID" toAttribute:@"eventLocationID"];
@@ -105,7 +105,7 @@
     
     
     
-    // EVENTLOCATION TO EVENT PARENT MAPPING
+    // EVENT LOCATION TO EVENT PARENT MAPPING
     // map the EventID from JSON to eventID NSNumber on object
     [eventLocationMapping mapKeyPath:@"eventID" toAttribute:@"eventID"];
     // connect the event Core Data relationship to the eventID number
@@ -127,7 +127,7 @@
     
     
     
-    // EVENTITEM
+    // EVENT ITEM
     RKManagedObjectMapping* eventItemMapping = [RKManagedObjectMapping mappingForEntityWithName:@"EventItem" inManagedObjectStore:objectManager.objectStore];
     eventItemMapping.primaryKeyAttribute = @"eventItemID";
     [eventItemMapping mapKeyPath:@"eventItemID" toAttribute:@"eventItemID"];
@@ -169,10 +169,36 @@
     [userMediaMapping mapKeyPath:@"eventItem" toRelationship:@"eventItem" withMapping:eventItemMapping serialize:NO];
     //[eventItemMapping mapKeyPath:@"userMediaID" toRelationship:@"userMedia" withMapping:userMediaMapping serialize:NO];
     
-    // setup reverse mappings
+    // setup reverse mappings FOR POSTING
     [[objectManager mappingProvider] setSerializationMapping:[userMediaMapping inverseMapping] forClass:[UserMedia class]];
     [objectManager.router routeClass:[UserMedia class] toResourcePath:@"/usermedia" forMethod:RKRequestMethodPOST];
 
+    
+    
+    // FACEBOOK LOGIN USER OBJECT
+    RKObjectMapping *fbLoginMapping = [RKObjectMapping mappingForClass:[FBLogin class]];
+    [fbLoginMapping mapKeyPath:@"accessToken" toAttribute:@"accessToken"];
+    [[objectManager mappingProvider] setSerializationMapping:[fbLoginMapping inverseMapping] forClass:[FBLogin class]];
+    [[RKObjectManager sharedManager].router routeClass:[FBLogin class] toResourcePath:@"/account/fblogin" forMethod:RKRequestMethodPOST];
+    
+    
+    // USER
+    RKManagedObjectMapping* userMapping = [RKManagedObjectMapping mappingForEntityWithName:@"User" inManagedObjectStore:objectManager.objectStore];
+    userMapping.primaryKeyAttribute = @"userID";
+    [userMapping mapKeyPath:@"ID" toAttribute:@"userID"];
+    [userMapping mapKeyPath:@"EmailAddress" toAttribute:@"emailAddress"];
+    [userMapping mapKeyPath:@"FirstName" toAttribute:@"firstName"];
+    [userMapping mapKeyPath:@"Surname" toAttribute:@"surname"];
+    [userMapping mapKeyPath:@"FacebookID" toAttribute:@"facebookID"];
+    [objectManager.mappingProvider setMapping:userMapping forKeyPath:@"user"];
+    [objectManager.mappingProvider setMapping:userMapping forKeyPath:@"users"];
+    
+    
+    
+    // SESSION OBJECT
+    RKObjectMapping *sessionMapping = [RKObjectMapping mappingForClass:[Session class]];
+    [sessionMapping mapKeyPath:@"" toAttribute:@"sessionID"];
+    [objectManager.mappingProvider setMapping:sessionMapping forKeyPath:@"session"];
     
     
     [objectManager.mappingProvider setObjectMapping:userMediaMapping
@@ -211,13 +237,77 @@
                               }];
     
     [objectManager.mappingProvider setObjectMapping:eventMapping
+                             forResourcePathPattern:@"/events?longitudeNW=:longitudeNW&latitudeNW=:latitudeNW&longitudeSE=:longitudeSW&latitudeSE=:latitudeSE&fromTime=:fromTime&toTime=:toTime"
+                              withFetchRequestBlock:^ (NSString *resourcePath) {
+                                  
+                                  NSFetchRequest *fr = [Event fetchRequest];
+                                  // get the eventID from the resourcePath
+                                  SOCPattern* soc = [SOCPattern patternWithString:@"/events?longitudeNW=:longitudeNW&latitudeNW=:latitudeNW&longitudeSE=:longitudeSE&latitudeSE=:latitudeSE&fromTime=:fromTime&toTime=:toTime"];
+                                  
+                                  
+                                  
+                                  
+                                  NSDictionary* theEvent = [soc parameterDictionaryFromSourceString:resourcePath];
+                                  
+                                  NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                                  df.dateFormat = @"yyyy-MM-dd HH:mm";
+                                  
+                                  NSDate *fromDate = [df dateFromString:[theEvent valueForKey:@"fromTime"]];
+                                  NSDate *toDate = [df dateFromString:[theEvent valueForKey:@"toTime"]];
+                                  
+                                  NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+                                  nf.numberStyle = NSNumberFormatterDecimalStyle;
+                                  
+                                  NSNumber *longitudeNW = [nf numberFromString:[theEvent valueForKey:@"longitudeNW"]];
+                                  NSNumber *longitudeSE = [nf numberFromString:[theEvent valueForKey:@"longitudeSE"]];
+                                  
+                                  
+                                  NSNumber *latitudeNW = [nf numberFromString:[theEvent valueForKey:@"latitudeNW"]];
+                                  NSNumber *latitudeSE = [nf numberFromString:[theEvent valueForKey:@"latitudeSE"]];
+                                  
+                                  NSNumber *lesserLatitude;
+                                  NSNumber *higherLatitude;
+                                  
+                                  
+                                  if ([latitudeNW floatValue] < [latitudeSE floatValue]) {
+                                      lesserLatitude = latitudeNW;
+                                      higherLatitude = latitudeSE;
+                                  } else {
+                                      lesserLatitude = latitudeSE;
+                                      higherLatitude = latitudeNW;
+                                  }
+                                  
+                                   /*
+                                  searchResult = searchResult.Where(m => m.startTime >= zone.fromTime && m.endTime <= zone.toTime);
+                                  searchResult = searchResult.Where(m => (m.latitudeNW >= zone.latitudeNW && m.longitudeNW >= zone.longitudeNW) ||
+                                                                    (m.latitudeSE <= zone.latitudeSE && m.longitudeSE <= zone.longitudeSE));
+                                  */
+                                  
+                                  //NSString *predString = [NSString stringWithFormat:@"(startTime >= %@) && (endTime <= %@) && (latitudeNW >= %@ && longitudeNW >= %@) && (latitudeSE <= %@ && longitudeSE <= %@)", fromDate, toDate, latitudeNW, longitudeNW, latitudeSE, longitudeSE];
+                                  
+                                  fr.predicate = [NSPredicate predicateWithFormat:
+                                                  @"(startTime >= %@) && (endTime <= %@) && (latitudeNW >= %@ && longitudeNW >= %@) && (latitudeSE <= %@ && longitudeSE <= %@)", fromDate, toDate, lesserLatitude, longitudeNW, higherLatitude, longitudeSE];
+                                  
+                                  //fr.predicate = [NSPredicate predicateWithFormat:
+                                  //                @"(latitudeNW >= %@ && longitudeNW >= %@) && (latitudeSE <= %@ && longitudeSE <= %@)", latitudeNW, longitudeNW, latitudeSE, longitudeSE];
+                                  
+                                  //fr.predicate = [NSPredicate predicateWithFormat:predString];
+                                  
+                                  return fr;
+                              }];
+    
+    
+    [objectManager.mappingProvider setObjectMapping:eventMapping
                              forResourcePathPattern:@"/events"
                               withFetchRequestBlock:^ (NSString *resourcePath) {
                                   return [Event fetchRequest];
                               }];
     
     
-        
+    
+    
+    
+    
     
     
 

@@ -41,6 +41,8 @@
 	<string>MainStoryboard_iPhone</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>MainStoryboard_iPad</string>
 	<key>UISupportedInterfaceOrientations</key>

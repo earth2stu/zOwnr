@@ -12,6 +12,7 @@
 @implementation ZNAppDelegate
 
 @synthesize window = _window;
+@synthesize facebook = _facebook;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -57,6 +58,12 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    
+    return [_facebook handleOpenURL:url]; 
 }
 
 @end
