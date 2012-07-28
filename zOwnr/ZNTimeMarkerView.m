@@ -30,10 +30,45 @@
     label.text = [self labelForCurrentTime];
 }
 
+- (void)setMarkerMode:(kZNTimelineMarkerMode)mode {
+    currentMode = mode;
+    label.text = [self labelForCurrentTime];
+}
+
 - (NSString*)labelForCurrentTime {
-    NSDate *currentTime = [zeroTime dateByAddingTimeInterval:(currentIndex * 3600)];
+    
+    NSDate *currentTime;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"HH";
+    switch (currentMode) {
+        case kZNTimelineMarkerModeHour:
+            currentTime = [zeroTime dateByAddingTimeInterval:(currentIndex * 3600)];
+            df.dateFormat = @"HH";
+            break;
+            
+        case kZNTimelineMarkerModeQuarterDay:
+            currentTime = [zeroTime dateByAddingTimeInterval:(currentIndex * 3600 * 6)];
+            df.dateFormat = @"dd";
+            break;
+            
+        case kZNTimelineMarkerModeHalfDay:
+            currentTime = [zeroTime dateByAddingTimeInterval:(currentIndex * 3600 * 6 * 2)];
+            df.dateFormat = @"dd";
+            break;
+            
+        case kZNTimelineMarkerModeDay:
+            currentTime = [zeroTime dateByAddingTimeInterval:(currentIndex * 3600 * 6 * 2 * 2)];
+            df.dateFormat = @"dd";
+            break;
+            
+        default:
+            break;
+    }
+
+    
+    
+    //NSDate *currentTime = [zeroTime dateByAddingTimeInterval:(currentIndex * 3600)];
+    
+    
     return [df stringFromDate:currentTime];
 }
 

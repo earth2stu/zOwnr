@@ -7,16 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZNTimeMarkerView.h"
 
 static const float kZNMinTimeMarkerSize = 20.0f;
 
-typedef enum {
-    kZNTimelineMarkerModeHour,
-    kZNTimelineMarkerModeQuarterDay,
-    kZNTimelineMarkerModeHalfDay,
-    kZNTimelineMarkerModeDay,
-    kZNTimelineMarkerModeMonth
-} kZNTimelineMarkerMode;
+
 
 @interface ZNTimelineScrollView2 : UIScrollView <UIScrollViewDelegate> {
     NSMutableArray *timeMarkers;

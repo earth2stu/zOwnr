@@ -9,7 +9,6 @@
 // min frame width is 240 or zooming between days, quarter days, half days, days wont work
 
 #import "ZNTimelineScrollView2.h"
-#import "ZNTimeMarkerView.h"
 
 @interface ZNTimelineScrollView2() {
     
@@ -72,8 +71,14 @@
     
     NSDate *zeroTime = [NSDate dateWithTimeIntervalSinceNow:0];
     
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyyMMdd";
+    
+    NSDate *dayZeroTime = [df dateFromString:[df stringFromDate:zeroTime]];
+    
     for (int i = 0; i < [self numMarkersForFrameSize] + 2; i++) {
-        ZNTimeMarkerView *timeMarker = [[ZNTimeMarkerView alloc] initWithFrame:CGRectMake(i * kZNMinTimeMarkerSize, 0, kZNMinTimeMarkerSize, 50) andIndex:i zeroTime:zeroTime];
+        ZNTimeMarkerView *timeMarker = [[ZNTimeMarkerView alloc] initWithFrame:CGRectMake(i * kZNMinTimeMarkerSize, 0, kZNMinTimeMarkerSize, 50) andIndex:i zeroTime:dayZeroTime];
+        [timeMarker setMarkerMode:currentMarkerMode];
         [timeMarkers addObject:timeMarker];
         [self addSubview:timeMarker];
     }
@@ -402,7 +407,7 @@
     int i = 0;
     for (ZNTimeMarkerView *m in timeMarkers) {
         [m setFrame:CGRectMake(i * currentMarkerWidth, 0, currentMarkerWidth, 50)];
-        
+        [m setMarkerMode:currentMarkerMode];
         i++;
     }
     
