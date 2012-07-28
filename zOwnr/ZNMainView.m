@@ -37,7 +37,10 @@
         //NSDate *toTime = [NSDate dateWithTimeIntervalSinceNow:(4 * 3600 * 24)];
 
         
-        timelineView = [[ZNTimelineScrollView alloc] initWithFrame:CGRectMake(0, 0, 435, 275) fromTime:fromTime toTime:toTime withDelegate:self];
+        //timelineView = [[ZNTimelineScrollView alloc] initWithFrame:CGRectMake(0, 0, 435, 275) fromTime:fromTime toTime:toTime withDelegate:self];
+        //[self addSubview:timelineView];
+        
+        timelineView = [[ZNTimelineScrollView2 alloc] initWithFrame:CGRectMake(0, 0, 435, 275)];
         [self addSubview:timelineView];
         
         socialView = [[ZNSocialView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];

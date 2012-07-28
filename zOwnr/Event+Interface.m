@@ -66,7 +66,7 @@
 #pragma mark PinView Protocol
 
 - (NSString*)imageName {
-    return @"zOwnr_tabbarbutton.png";
+    return @"zOwnr.png";
 }
 
 #pragma mark MenuView

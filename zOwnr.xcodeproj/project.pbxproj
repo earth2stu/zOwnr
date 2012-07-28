@@ -71,6 +71,10 @@
 		2031D4DE15779F4600ABCD0C /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 2031D4DD15779F4600ABCD0C /* Session.m */; };
 		2033128915B27B5600B34002 /* ZNNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2033128715B27B5600B34002 /* ZNNavController.m */; };
 		2033128A15B27B5600B34002 /* ZNNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2033128815B27B5600B34002 /* ZNNavController.xib */; };
+		2034EE7215C27B73002CE091 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034EE7115C27B73002CE091 /* Icon.png */; };
+		2034EE7415C27B79002CE091 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034EE7315C27B79002CE091 /* Icon@2x.png */; };
+		2034EE7615C27C1B002CE091 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034EE7515C27C1B002CE091 /* Default.png */; };
+		2034EE9715C2A617002CE091 /* ZNTestScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2034EE9615C2A616002CE091 /* ZNTestScrollVC.m */; };
 		2037712315BC64B0004C1E6D /* Event+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037712215BC64B0004C1E6D /* Event+Interface.m */; };
 		2037713B15BC64B0004C1E6D /* ZNTimelineBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037713A15BC64B0004C1E6D /* ZNTimelineBarView.m */; };
 		2037713E15BC64B0004C1E6D /* EventLocation+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037713D15BC64B0004C1E6D /* EventLocation+Interface.m */; };
@@ -135,9 +139,10 @@
 		20C19DA615383A92006B757F /* EventItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19DA515383A92006B757F /* EventItemView.m */; };
 		20C19DA815383AAD006B757F /* EventItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C19DA715383AAD006B757F /* EventItemView.xib */; };
 		20D6E3D415C14391001B1B15 /* ZNTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3D315C14391001B1B15 /* ZNTabBar.m */; };
+		20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView2.m */; };
+		20D6E3EC15C217E9001B1B15 /* ZNTimeMarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */; };
 		20D75DE215BFAC3100CB225B /* ZNSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DE115BFAC3100CB225B /* ZNSocialView.m */; };
 		20D75DE515BFAC4100CB225B /* ZNMediaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DE415BFAC4100CB225B /* ZNMediaView.m */; };
-		20D75DE915BFB18A00CB225B /* ZNContextMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DE815BFB18A00CB225B /* ZNContextMenuView.m */; };
 		20D75DED15BFE03000CB225B /* ZNMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DEC15BFE03000CB225B /* ZNMenuItem.m */; };
 		20D75DF115BFFC6A00CB225B /* ZNSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DF015BFFC6A00CB225B /* ZNSettings.m */; };
 		20D75DF315C0122700CB225B /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D75DF215C0122700CB225B /* 07-map-marker.png */; };
@@ -157,11 +162,6 @@
 		20F7DFCA1535829700CD391B /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFC81535829700CD391B /* MainStoryboard_iPhone.storyboard */; };
 		20F7DFCD1535829700CD391B /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFCB1535829700CD391B /* MainStoryboard_iPad.storyboard */; };
 		20F7DFD01535829700CD391B /* ZNFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F7DFCF1535829700CD391B /* ZNFirstViewController.m */; };
-		20F7DFD21535829700CD391B /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFD11535829700CD391B /* first.png */; };
-		20F7DFD41535829700CD391B /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFD31535829700CD391B /* first@2x.png */; };
-		20F7DFD71535829700CD391B /* ZNSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F7DFD61535829700CD391B /* ZNSecondViewController.m */; };
-		20F7DFD91535829700CD391B /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFD81535829700CD391B /* second.png */; };
-		20F7DFDB1535829700CD391B /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20F7DFDA1535829700CD391B /* second@2x.png */; };
 		20F7DFE31535829700CD391B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFE21535829700CD391B /* SenTestingKit.framework */; };
 		20F7DFE41535829700CD391B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB61535829700CD391B /* UIKit.framework */; };
 		20F7DFE51535829700CD391B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB81535829700CD391B /* Foundation.framework */; };
@@ -314,6 +314,11 @@
 		2033128615B27B5600B34002 /* ZNNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNNavController.h; sourceTree = "<group>"; };
 		2033128715B27B5600B34002 /* ZNNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNNavController.m; sourceTree = "<group>"; };
 		2033128815B27B5600B34002 /* ZNNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZNNavController.xib; sourceTree = "<group>"; };
+		2034EE7115C27B73002CE091 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		2034EE7315C27B79002CE091 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		2034EE7515C27C1B002CE091 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2034EE9515C2A616002CE091 /* ZNTestScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTestScrollVC.h; sourceTree = "<group>"; };
+		2034EE9615C2A616002CE091 /* ZNTestScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTestScrollVC.m; sourceTree = "<group>"; };
 		2037712115BC64B0004C1E6D /* Event+Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+Interface.h"; sourceTree = "<group>"; };
 		2037712215BC64B0004C1E6D /* Event+Interface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+Interface.m"; sourceTree = "<group>"; };
 		2037713915BC64B0004C1E6D /* ZNTimelineBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineBarView.h; sourceTree = "<group>"; };
@@ -433,12 +438,14 @@
 		20C19DA715383AAD006B757F /* EventItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventItemView.xib; sourceTree = "<group>"; };
 		20D6E3D215C14391001B1B15 /* ZNTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTabBar.h; sourceTree = "<group>"; };
 		20D6E3D315C14391001B1B15 /* ZNTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTabBar.m; sourceTree = "<group>"; };
+		20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineScrollView2.h; sourceTree = "<group>"; };
+		20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineScrollView2.m; sourceTree = "<group>"; };
+		20D6E3EA15C217E8001B1B15 /* ZNTimeMarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimeMarkerView.h; sourceTree = "<group>"; };
+		20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimeMarkerView.m; sourceTree = "<group>"; };
 		20D75DE015BFAC3100CB225B /* ZNSocialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNSocialView.h; sourceTree = "<group>"; };
 		20D75DE115BFAC3100CB225B /* ZNSocialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNSocialView.m; sourceTree = "<group>"; };
 		20D75DE315BFAC4100CB225B /* ZNMediaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNMediaView.h; sourceTree = "<group>"; };
 		20D75DE415BFAC4100CB225B /* ZNMediaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNMediaView.m; sourceTree = "<group>"; };
-		20D75DE715BFB18A00CB225B /* ZNContextMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNContextMenuView.h; sourceTree = "<group>"; };
-		20D75DE815BFB18A00CB225B /* ZNContextMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNContextMenuView.m; sourceTree = "<group>"; };
 		20D75DEB15BFE03000CB225B /* ZNMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNMenuItem.h; sourceTree = "<group>"; };
 		20D75DEC15BFE03000CB225B /* ZNMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNMenuItem.m; sourceTree = "<group>"; };
 		20D75DEF15BFFC6A00CB225B /* ZNSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNSettings.h; sourceTree = "<group>"; };
@@ -469,12 +476,6 @@
 		20F7DFCC1535829700CD391B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		20F7DFCE1535829700CD391B /* ZNFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNFirstViewController.h; sourceTree = "<group>"; };
 		20F7DFCF1535829700CD391B /* ZNFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNFirstViewController.m; sourceTree = "<group>"; };
-		20F7DFD11535829700CD391B /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		20F7DFD31535829700CD391B /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		20F7DFD51535829700CD391B /* ZNSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZNSecondViewController.h; sourceTree = "<group>"; };
-		20F7DFD61535829700CD391B /* ZNSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZNSecondViewController.m; sourceTree = "<group>"; };
-		20F7DFD81535829700CD391B /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		20F7DFDA1535829700CD391B /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		20F7DFE11535829700CD391B /* zOwnrTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zOwnrTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F7DFE21535829700CD391B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		20F7DFEA1535829700CD391B /* zOwnrTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "zOwnrTests-Info.plist"; sourceTree = "<group>"; };
@@ -588,6 +589,7 @@
 		2031D472157793DF00ABCD0C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				2028B87C1538540700F55021 /* Images */,
 				20D75DF615C012DA00CB225B /* 09-chat-2.png */,
 				20D75DF415C0124000CB225B /* 11-clock.png */,
 				20D75DF215C0122700CB225B /* 07-map-marker.png */,
@@ -685,7 +687,6 @@
 				2037718F15BD1DFF004C1E6D /* ZNBaseViewController.m */,
 				2037718315BD1B1D004C1E6D /* TitleView */,
 				2037718015BD1A93004C1E6D /* LogoView */,
-				20D75DE615BFB16500CB225B /* ContextMenuView */,
 				2037717F15BD1A88004C1E6D /* MenuView */,
 				2037717E15BD1A71004C1E6D /* MainView */,
 			);
@@ -933,7 +934,6 @@
 		20B670681536398F00135C4B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2028B87C1538540700F55021 /* Images */,
 				20B670691536399B00135C4B /* iPhone */,
 			);
 			name = UI;
@@ -987,6 +987,12 @@
 				20BB3B7B15BC33DB006F00EE /* TimelineScrollView.m */,
 				2037715115BC64B0004C1E6D /* ZNTestTimelineViewController.h */,
 				2037715215BC64B0004C1E6D /* ZNTestTimelineViewController.m */,
+				20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView2.h */,
+				20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView2.m */,
+				20D6E3EA15C217E8001B1B15 /* ZNTimeMarkerView.h */,
+				20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */,
+				2034EE9515C2A616002CE091 /* ZNTestScrollVC.h */,
+				2034EE9615C2A616002CE091 /* ZNTestScrollVC.m */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -1007,15 +1013,6 @@
 				20D6E3D315C14391001B1B15 /* ZNTabBar.m */,
 			);
 			name = TabBar;
-			sourceTree = "<group>";
-		};
-		20D75DE615BFB16500CB225B /* ContextMenuView */ = {
-			isa = PBXGroup;
-			children = (
-				20D75DE715BFB18A00CB225B /* ZNContextMenuView.h */,
-				20D75DE815BFB18A00CB225B /* ZNContextMenuView.m */,
-			);
-			name = ContextMenuView;
 			sourceTree = "<group>";
 		};
 		20D75DEA15BFC86500CB225B /* Login */ = {
@@ -1057,6 +1054,9 @@
 		20F7DFA71535829700CD391B = {
 			isa = PBXGroup;
 			children = (
+				2034EE7515C27C1B002CE091 /* Default.png */,
+				2034EE7315C27B79002CE091 /* Icon@2x.png */,
+				2034EE7115C27B73002CE091 /* Icon.png */,
 				20F7DFBC1535829700CD391B /* zOwnr */,
 				20F7DFE81535829700CD391B /* zOwnrTests */,
 				20F7DFB51535829700CD391B /* Frameworks */,
@@ -1113,12 +1113,6 @@
 				20F7DFCB1535829700CD391B /* MainStoryboard_iPad.storyboard */,
 				20F7DFCE1535829700CD391B /* ZNFirstViewController.h */,
 				20F7DFCF1535829700CD391B /* ZNFirstViewController.m */,
-				20F7DFD11535829700CD391B /* first.png */,
-				20F7DFD31535829700CD391B /* first@2x.png */,
-				20F7DFD51535829700CD391B /* ZNSecondViewController.h */,
-				20F7DFD61535829700CD391B /* ZNSecondViewController.m */,
-				20F7DFD81535829700CD391B /* second.png */,
-				20F7DFDA1535829700CD391B /* second@2x.png */,
 				20F7DFBD1535829700CD391B /* Supporting Files */,
 				205A8F901539A1390044134C /* zOwnrConstants.h */,
 			);
@@ -1343,10 +1337,6 @@
 				20F7DFC11535829700CD391B /* InfoPlist.strings in Resources */,
 				20F7DFCA1535829700CD391B /* MainStoryboard_iPhone.storyboard in Resources */,
 				20F7DFCD1535829700CD391B /* MainStoryboard_iPad.storyboard in Resources */,
-				20F7DFD21535829700CD391B /* first.png in Resources */,
-				20F7DFD41535829700CD391B /* first@2x.png in Resources */,
-				20F7DFD91535829700CD391B /* second.png in Resources */,
-				20F7DFDB1535829700CD391B /* second@2x.png in Resources */,
 				20C19DA815383AAD006B757F /* EventItemView.xib in Resources */,
 				2028B8901538540800F55021 /* 360degrees.png in Resources */,
 				2028B8911538540800F55021 /* audio.png in Resources */,
@@ -1405,6 +1395,9 @@
 				20D75DF315C0122700CB225B /* 07-map-marker.png in Resources */,
 				20D75DF515C0124000CB225B /* 11-clock.png in Resources */,
 				20D75DF715C012DA00CB225B /* 09-chat-2.png in Resources */,
+				2034EE7215C27B73002CE091 /* Icon.png in Resources */,
+				2034EE7415C27B79002CE091 /* Icon@2x.png in Resources */,
+				2034EE7615C27C1B002CE091 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1442,7 +1435,6 @@
 				20F7DFC31535829700CD391B /* main.m in Sources */,
 				20F7DFC71535829700CD391B /* ZNAppDelegate.m in Sources */,
 				20F7DFD01535829700CD391B /* ZNFirstViewController.m in Sources */,
-				20F7DFD71535829700CD391B /* ZNSecondViewController.m in Sources */,
 				20F7E0251535900900CD391B /* ZNResponseLoader.m in Sources */,
 				20B670581535D90700135C4B /* zOwnr.xcdatamodeld in Sources */,
 				20B670611535D94800135C4B /* User.m in Sources */,
@@ -1511,13 +1503,15 @@
 				203771AB15BF8E94004C1E6D /* ZNMarkerView.m in Sources */,
 				20D75DE215BFAC3100CB225B /* ZNSocialView.m in Sources */,
 				20D75DE515BFAC4100CB225B /* ZNMediaView.m in Sources */,
-				20D75DE915BFB18A00CB225B /* ZNContextMenuView.m in Sources */,
 				20D75DED15BFE03000CB225B /* ZNMenuItem.m in Sources */,
 				20D75DF115BFFC6A00CB225B /* ZNSettings.m in Sources */,
 				20D75DFA15C015BF00CB225B /* ZNMainBaseView.m in Sources */,
 				20D75DFD15C02D4900CB225B /* ZNSocialLoginView.m in Sources */,
 				20D75E2F15C0EC8B00CB225B /* ZNMapOverlayView.m in Sources */,
 				20D6E3D415C14391001B1B15 /* ZNTabBar.m in Sources */,
+				20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView2.m in Sources */,
+				20D6E3EC15C217E9001B1B15 /* ZNTimeMarkerView.m in Sources */,
+				2034EE9715C2A617002CE091 /* ZNTestScrollVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

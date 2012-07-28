@@ -10,6 +10,7 @@
 
 // 4 main views
 #import "ZNTimelineScrollView.h"
+#import "ZNTimelineScrollView2.h"
 #import "ZNMapView.h"
 #import "ZNSocialView.h"
 #import "ZNMediaView.h"
@@ -32,7 +33,7 @@
     kQuadrantCorner currentQuadrant;
     
     ZNMapView *mapView;
-    ZNTimelineScrollView *timelineView;
+    ZNTimelineScrollView2 *timelineView;
     ZNSocialView *socialView;
     ZNMediaView *mediaView;
     
@@ -44,7 +45,7 @@
 @property (nonatomic, retain) ZNSocialView *socialView;
 @property (nonatomic, retain) ZNMediaView *mediaView;
 @property (nonatomic, retain) ZNMapView *mapView;
-@property (nonatomic, retain) ZNTimelineScrollView *timelineView;
+@property (nonatomic, retain) ZNTimelineScrollView2 *timelineView;
 
 - (id)initWithFrame:(CGRect)frame withDelegate:(id<ZNMainViewDelegate>)del;
 - (void)setCurrentQuadrant:(kQuadrantCorner)quadrant;

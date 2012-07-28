@@ -157,9 +157,7 @@
     [userMediaMapping mapKeyPath:@"userMediaID" toAttribute:@"userMediaID"];
     [userMediaMapping mapKeyPath:@"caption" toAttribute:@"caption"];
     [userMediaMapping mapKeyPath:@"captureTime" toAttribute:@"captureTime"];
-    
     userMediaMapping.dateFormatters = [NSArray arrayWithObject: [RKDotNetDateFormatter dotNetDateFormatter]]; 
-    
     userMediaMapping.setNilForMissingRelationships = NO;
     
     // connect to parent - eventItem
