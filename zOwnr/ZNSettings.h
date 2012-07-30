@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "ZNObjectLoader.h"
 
 @protocol ZNSettingsDelegate <NSObject>
 
@@ -17,7 +18,9 @@
 
 @end
 
-@interface ZNSettings : NSObject
+@interface ZNSettings : NSObject <ZNObjectLoaderDelegate> {
+    ZNObjectLoader *selectionLoader;
+}
 
 + (ZNSettings*)shared;
 
@@ -29,6 +32,6 @@
 
 - (BOOL)isCurrentUser;
 - (BOOL)isLoggedIn;
-
+- (NSDictionary*)requestHeaders;
 
 @end

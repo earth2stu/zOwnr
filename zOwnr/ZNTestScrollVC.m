@@ -7,7 +7,7 @@
 //
 
 #import "ZNTestScrollVC.h"
-#import "ZNTimelineScrollView2.h"
+
 
 @implementation ZNTestScrollVC
 
@@ -45,7 +45,11 @@
     
     self.view.backgroundColor = [UIColor darkGrayColor];
     
-    ZNTimelineScrollView2 *c = [[ZNTimelineScrollView2 alloc] initWithFrame:CGRectMake(0, 0, kZNMinTimeMarkerSize * 15, 300)];
+    NSDate *fromTime = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDate *toTime = [NSDate dateWithTimeIntervalSinceNow:0];
+    
+    
+    ZNTimelineScrollView2 *c = [[ZNTimelineScrollView2 alloc] initWithFrame:CGRectMake(0, 0, kZNMinTimeMarkerSize * 15, 300)  withDelegate:self];
     [self.view addSubview:c];
     
     
@@ -63,6 +67,10 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didScrollToTimespan:(NSDate *)fromTime toTime:(NSDate *)toTime {
+    NSLog(@"scrolled to :%@ to %@", fromTime, toTime);
 }
 
 @end

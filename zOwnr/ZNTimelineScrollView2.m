@@ -14,10 +14,16 @@
     
 }
 
-- (int)numMarkersForFrameSize;
+- (int)maxMarkersForFrameSize;
 - (void)recenterIfNecessary;
 - (CGSize)superFrameSize;
 - (void)setMarkersToCurrentWidth;
+- (void)setTimeLabels;
+- (void)didSelectTimePeriod;
+- (void)setupMarkersForCurrentPeriod;
+- (void)fixMarkerWidth;
+- (void)lockToClosest;
+- (void)setZeroTimeForMarkers;
 
 @end
 
@@ -30,60 +36,171 @@
 @synthesize endTime = _endTime;
 
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame withDelegate:(id<ZNTimelineScrollDelegate>)del;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
         
-        //responseInsets = respInsets;
+        // delegates
+        scrollDelegate = del;
         self.delegate = self;
+        
+        // ui
         self.clipsToBounds = YES;
         [self setDecelerationRate:UIScrollViewDecelerationRateFast];
-        isZooming = NO;
-        
-        currentMarkerWidth = kZNMinTimeMarkerSize;
-        currentMarkerMode = kZNTimelineMarkerModeHour;
-        
-        //self.pagingEnabled = YES;
-        //self.responseInsets = UIEdgeInsetsMake(0, 0, 0, superFrame.size.width - kZNMinTimeMarkerSize);
-        
-        //[self setFrame:CGRectMake(0, 0, kZNMinTimeMarkerSize, superFrame.size.height)];
-        
-        self.contentSize = CGSizeMake(([self numMarkersForFrameSize] + 2) * kZNMinTimeMarkerSize, self.frame.size.height);
-        
         self.showsHorizontalScrollIndicator = NO;
         
+        
+        int m = [self maxMarkersForFrameSize];
+        
+        NSLog(@"max markers int=%i", m);
+        
+//        currentMarkerWidth = kZNMinTimeMarkerSize;
+//        currentMarkerMode = kZNTimelineMarkerModeDay;
+        
+        
+        //self.contentSize = CGSizeMake(([self maxMarkersForFrameSize] + 2) * kZNMinTimeMarkerSize, self.frame.size.height);
+        
+        
+        // pinch zooming
+        isZooming = NO;
         pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
         [self addGestureRecognizer:pinchRecognizer];
         
+        // labels
+        rightStaticTime = [[UILabel alloc] initWithFrame:CGRectMake(minMarkerWidth + 5, 20, 180, 20)];
+        [rightStaticTime setBackgroundColor:[UIColor clearColor]];
+        rightStaticTime.font = [UIFont systemFontOfSize:10];
+        rightStaticTime.alpha = 0.8f;
+        [self addSubview:rightStaticTime];
+        //[self insertSubview:rightStaticTime atIndex:-100];
         
+        [self setMarkersToCurrentWidth];
+        
+        //[self didSelectTimePeriod];
     }
     return self;
+}
+
+- (void)setTimespanFrom:(NSDate*)fromTime to:(NSDate*)toTime {
+    self.startTime = fromTime;
+    self.endTime = toTime;
+    [self setupMarkersForCurrentPeriod];
+    [self didSelectTimePeriod];
+}
+
+- (void)setupMarkersForCurrentPeriod {
+    
+    NSLog(@"setting up markers for current period");
+    
+    // let's always start with days as a minimum display
+    
+    // get the days either side of the to and from dates
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyyMMdd 00:00";
+    
+    NSDate *fromDay = [df dateFromString:[df stringFromDate:self.startTime]];
+    NSDate *toDay = [df dateFromString:[df stringFromDate:self.endTime]];
+    toDay = [toDay dateByAddingTimeInterval:3600 * 24];
+    
+    
+    NSTimeInterval totalDays = [toDay timeIntervalSinceDate:fromDay] / (3600 * 24);
+    
+    if (totalDays > maxMarkers) {
+        // we have more days than we can show, just show the maximum
+        currentMarkerMode = kZNTimelineMarkerModeDay;
+        currentMarkerWidth = minMarkerWidth;
+    } else {
+        // work out the mode for this period
+        if (totalDays <= maxMarkers / 2) {
+            // we can fit it into half days
+            currentMarkerMode = kZNTimelineMarkerModeHalfDay;
+            currentMarkerWidth = self.frame.size.width / (totalDays * 2);
+        } else {
+            if (totalDays <= maxMarkers / 4) {
+                currentMarkerMode = kZNTimelineMarkerModeQuarterDay;
+                currentMarkerWidth = self.frame.size.width / (totalDays * 4);
+            } else {
+                currentMarkerMode = kZNTimelineMarkerModeDay;
+                currentMarkerWidth = self.frame.size.width / totalDays;
+            }
+        }
+    }
+    
+    [self fixMarkerWidth];
+    
+    currentZeroTime = fromDay;
+    
+    [self setZeroTimeForMarkers];
+    
+    [self setMarkersToCurrentWidth];
+    
+    [self lockToClosest];
+
+}
+
+- (void)fixMarkerWidth {
+    
+    NSLog(@"fixing marker width");
+    
+    // changes approximated marker width to one that will fit exactly in this frame
+    
+    int numShowing = lroundf(self.frame.size.width / currentMarkerWidth);
+    numShowing = self.frame.size.width / currentMarkerWidth;
+    
+    currentMarkerWidth = self.frame.size.width / numShowing;
+    
+    // only deal with 2 more than we need
+    self.contentSize = CGSizeMake((numShowing + 2) * currentMarkerWidth, self.frame.size.height);
+    
+    NSLog(@"setting content width to:%f", (numShowing + 2) * currentMarkerWidth);
 }
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
+    if (frame.size.height <= kMainEdgeViewHeight || frame.size.width <= kMainEdgeViewHeight) {
+        return;
+    }
+    
     // need to reset everything cos our base size has changed
     
-    timeMarkers = [NSMutableArray array];
+    // work out the minimum marker width
+    maxMarkers = self.frame.size.width / kZNMinTimeMarkerSize;
+    minMarkerWidth = self.frame.size.width / maxMarkers;
+
+    if (timeMarkers) {
+        [timeMarkers makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [timeMarkers removeAllObjects];
+    } else {
+        timeMarkers = [NSMutableArray array];
+    }
     
+    /*
     NSDate *zeroTime = [NSDate dateWithTimeIntervalSinceNow:0];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyyMMdd";
     
     NSDate *dayZeroTime = [df dateFromString:[df stringFromDate:zeroTime]];
+    currentZeroTime = dayZeroTime;
+    */
     
-    for (int i = 0; i < [self numMarkersForFrameSize] + 2; i++) {
-        ZNTimeMarkerView *timeMarker = [[ZNTimeMarkerView alloc] initWithFrame:CGRectMake(i * kZNMinTimeMarkerSize, 0, kZNMinTimeMarkerSize, 50) andIndex:i zeroTime:dayZeroTime];
+    for (int i = 0; i < maxMarkers + 2; i++) {
+        ZNTimeMarkerView *timeMarker = [[ZNTimeMarkerView alloc] initWithIndex:i];
+        //ZNTimeMarkerView *timeMarker = [[ZNTimeMarkerView alloc] initWithFrame:CGRectMake(i * kZNMinTimeMarkerSize, 0, kZNMinTimeMarkerSize, 50) andIndex:i zeroTime:dayZeroTime];
         [timeMarker setMarkerMode:currentMarkerMode];
         [timeMarkers addObject:timeMarker];
         [self addSubview:timeMarker];
     }
     
-    self.contentOffset = CGPointMake(kZNMinTimeMarkerSize, 0);
+    
+    if (self.startTime && self.endTime) {
+        [self setupMarkersForCurrentPeriod];
+    }
+    
+    [self bringSubviewToFront:rightStaticTime];
     
 }
 
@@ -95,6 +212,8 @@
         [self recenterIfNecessary];
 
     }
+    
+    [self setTimeLabels];
             //}
     
 }
@@ -103,12 +222,16 @@
     return CGSizeMake(self.frame.size.width + responseInsets.right, self.frame.size.height);
 }
 
+- (int)timeDiffForMarkerMode {
+    
+}
+
 - (void)recenterIfNecessary {
     // how far is the visible screen from the left edge of the markers
     CGPoint currentOffset = [self contentOffset];
     // how wide is the current set of markers
     CGFloat contentWidth = [self contentSize].width;
-    NSLog(@"contentWidth is now:%f", contentWidth);
+    //NSLog(@"contentWidth is now:%f", contentWidth);
     
     // what is the x offset point if we are in the middle?
     CGFloat centerOffsetX = (contentWidth - [self bounds].size.width) / 2.0;
@@ -128,34 +251,108 @@
         
         int diffToApply;
         
+        NSDate *newZeroTime;
+        
+        int timeDiff = 0;
+        
+        switch (currentMarkerMode) {
+            case kZNTimelineMarkerModeDay:
+                timeDiff = (3600 * 24);
+                break;
+                
+            case kZNTimelineMarkerModeHalfDay:
+                timeDiff = (3600 * 12);
+                break;
+                
+            case kZNTimelineMarkerModeQuarterDay:
+                timeDiff = (3600 * 6);
+                break;
+                
+            case kZNTimelineMarkerModeHour:
+                timeDiff = 3600;
+                break;
+                
+                            
+            default:
+                break;
+        }
+        
         if (currentOffset.x < centerOffsetX) {
             // we have scrolled right
             //NSLog(@"right");
             // shift all time markers to show one less than they are currently
             diffToApply = -1;
+            
+            newZeroTime = [currentZeroTime dateByAddingTimeInterval:timeDiff * -1];
+            
         } else {
             //NSLog(@"left");
             // shift all time markers to show one more than they are currently
             diffToApply = 1;
+            newZeroTime = [currentZeroTime dateByAddingTimeInterval:timeDiff];
         }
         
+        currentZeroTime = newZeroTime;
         
         // move content by the same amount so it appears to stay still
-        for (ZNTimeMarkerView *m in timeMarkers) {
-            [m setNewIndex:diffToApply];
-            //CGPoint center = [labelContainerView convertPoint:label.center toView:self];
-//            center.x += (centerOffsetX - currentOffset.x);
-//            label.center = [self convertPoint:center toView:labelContainerView];
-        }
+        [self setZeroTimeForMarkers];
         
     }
      
 }
 
+- (void)setZeroTimeForMarkers {
+    
+    NSLog(@"setting zero time for markers");
+    
+    for (ZNTimeMarkerView *m in timeMarkers) {
+        //[m setNewIndex:diffToApply];
+        [m setNewZeroTime:currentZeroTime];
+        //CGPoint center = [labelContainerView convertPoint:label.center toView:self];
+        //            center.x += (centerOffsetX - currentOffset.x);
+        //            label.center = [self convertPoint:center toView:labelContainerView];
+    }
+}
+
+- (void)setTimeLabels {
+
+    [rightStaticTime setFrame:CGRectMake(self.contentOffset.x + 5, rightStaticTime.frame.origin.y, rightStaticTime.frame.size.width, rightStaticTime.frame.size.height)];
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    
+    switch (currentMarkerMode) {
+        case kZNTimelineMarkerModeDay:
+            df.dateFormat = @"MMMM yyyy";
+            break;
+            
+        case kZNTimelineMarkerModeHalfDay:
+            df.dateFormat = @"MMMM yyyy";
+            break;
+            
+        case kZNTimelineMarkerModeQuarterDay:
+            df.dateFormat = @"MMMM yyyy";
+            break;
+            
+        case kZNTimelineMarkerModeHour:
+            df.dateFormat = @"dd MMMM yyyy";
+            break;
+            
+        default:
+            break;
+    }
+    
+    [rightStaticTime setText:[df stringFromDate:currentZeroTime]];
+    
+}
+
 #pragma mark Calculations
 
-- (int)numMarkersForFrameSize {
+- (int)maxMarkersForFrameSize {
     // only make 2 more than the max number of timemarkers that can fit on the screen
+    
+    NSLog(@"width= %f, minsize= %f, numMarkers=%f", self.frame.size.width, kZNMinTimeMarkerSize, self.frame.size.width / kZNMinTimeMarkerSize);
+    
+    
     return (self.frame.size.width / kZNMinTimeMarkerSize);
 }
 
@@ -173,6 +370,8 @@
 
 - (void)lockToClosest {
     
+    NSLog(@"locking to closest marker");
+    
 //    NSLog(@"content offset = %f with width %f", self.contentOffset.x, currentMarkerWidth);
     
 //    if (self.contentOffset.x < (currentMarkerWidth / 2)) {
@@ -180,6 +379,8 @@
 //    } else {
         [self setContentOffset:CGPointMake(currentMarkerWidth, 0) animated:YES];
 //    }
+    
+    [self didSelectTimePeriod];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -211,9 +412,9 @@
     }
     //NSLog(@"pinched %f", sender.scale);
     
-    float newMarkerWidth = initialPinchMarkerSize * sender.scale * initialPinchScaleFactor;
+    float newMarkerWidth = initialPinchMarkerSize * sender.scale * sender.scale * initialPinchScaleFactor;
     
-    if (newMarkerWidth < kZNMinTimeMarkerSize) {
+    if (newMarkerWidth < minMarkerWidth) {
         switch (currentMarkerMode) {
             case kZNTimelineMarkerModeHour:
                 // move to quarter day
@@ -244,7 +445,7 @@
             case kZNTimelineMarkerModeDay:
                 // stay in day mode
                 
-                newMarkerWidth = kZNMinTimeMarkerSize;
+                newMarkerWidth = minMarkerWidth;
                 break;
                 
             default:
@@ -260,7 +461,7 @@
             case kZNTimelineMarkerModeDay:
                 // lets move from day to half day mode
                 
-                if (newMarkerWidth > kZNMinTimeMarkerSize * 2.0f) {
+                if (newMarkerWidth > minMarkerWidth * 2.0f) {
                     currentMarkerMode = kZNTimelineMarkerModeHalfDay;
                     newMarkerWidth = newMarkerWidth / 2.0f;
                     initialPinchScaleFactor = initialPinchScaleFactor / 2.0f;
@@ -273,7 +474,7 @@
             case kZNTimelineMarkerModeHalfDay:
                 // lets move from day to half day mode
                 
-                if (newMarkerWidth > kZNMinTimeMarkerSize * 2.0f) {
+                if (newMarkerWidth > minMarkerWidth * 2.0f) {
                     
                     currentMarkerMode = kZNTimelineMarkerModeQuarterDay;
                     newMarkerWidth = newMarkerWidth / 2.0f;
@@ -285,7 +486,7 @@
             case kZNTimelineMarkerModeQuarterDay:
                 // lets move from day to half day mode
                 
-                if (newMarkerWidth > kZNMinTimeMarkerSize * 6.0f) {
+                if (newMarkerWidth > minMarkerWidth * 6.0f) {
                     
                     currentMarkerMode = kZNTimelineMarkerModeHour;
                     newMarkerWidth = newMarkerWidth / 6.0f;
@@ -383,15 +584,7 @@
         
         // we need to set everything to the closest multiple of the current width of the frame
         
-        int numShowing = lroundf(self.frame.size.width / currentMarkerWidth);
-        
-        
-        currentMarkerWidth = self.frame.size.width / numShowing;
-        
-        // only deal with 2 more than we need
-        self.contentSize = CGSizeMake((numShowing + 2) * currentMarkerWidth, self.frame.size.height);
-        
-        NSLog(@"setting content width to:%f", (numShowing + 2) * currentMarkerWidth);
+        [self fixMarkerWidth];
         
         [self setMarkersToCurrentWidth];
         
@@ -403,14 +596,32 @@
     return;
 }
 
+- (void)didSelectTimePeriod {
+    NSLog(@"selecting time period");
+    
+    ZNTimeMarkerView *startView = [timeMarkers objectAtIndex:1];
+    
+    int numShowing = lroundf(self.frame.size.width / currentMarkerWidth);
+    numShowing = self.frame.size.width / currentMarkerWidth;
+    
+    ZNTimeMarkerView *endView = [timeMarkers objectAtIndex:numShowing + 1];
+    
+    
+    self.startTime = startView.currentTime;
+    self.endTime = endView.currentTime;
+    
+    [scrollDelegate didScrollToTimespan:startView.currentTime toTime:endView.currentTime];
+}
+
 - (void)setMarkersToCurrentWidth {
+    NSLog(@"setting markers to currentWidth");
     int i = 0;
     for (ZNTimeMarkerView *m in timeMarkers) {
         [m setFrame:CGRectMake(i * currentMarkerWidth, 0, currentMarkerWidth, 50)];
         [m setMarkerMode:currentMarkerMode];
         i++;
     }
-    
+    [timeMarkers makeObjectsPerformSelector:@selector(setNeedsDisplay)];
     
 }
 

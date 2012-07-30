@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "ZNTimelineView.h"
 #import "ZNMapView.h"
+#import "Zone.h"
 
-@interface EventGroup : NSObject <ZNMapView, ZNTimelineView>
+@interface EventGroup : Zone <ZNMapView, ZNTimelineView>
 
 @property (nonatomic, retain) NSArray *events;
 

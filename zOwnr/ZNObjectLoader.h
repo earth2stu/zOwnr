@@ -26,17 +26,20 @@
 
 @protocol ZNLoadable <NSObject>
 
+- (BOOL)isLoaded;
 - (ZNObjectLoader*)objectLoaderWithDelegate:(id<ZNObjectLoaderDelegate>)delegate;
 
 @end
 
 @interface ZNObjectLoader : NSObject <NSFetchedResultsControllerDelegate, RKObjectLoaderDelegate> {
     id<ZNObjectLoaderDelegate> delegate;
+    RKObjectLoader *objectLoader;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 - (void)changeResourcePath:(NSString*)resourcePath;
 - (id)initWithResourcePath:(NSString*)resourcePath andDelegate:(id<ZNObjectLoaderDelegate>)del;
+- (void)cancelLoad;
 
 @end

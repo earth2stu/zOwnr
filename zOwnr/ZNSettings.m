@@ -75,6 +75,16 @@
     //[delegate setCurrentSelection:currentSelection];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeSelectionKey object:_currentSelection];
+ 
+}
+
+- (NSDictionary*)requestHeaders {
+    NSMutableDictionary *headers = [NSMutableDictionary dictionary];
+    
+    if (_currentSession) {
+        [headers setObject:_currentSession forKey:@"auth"];
+    }
+    return headers;
 }
 
 @end

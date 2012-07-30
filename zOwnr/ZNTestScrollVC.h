@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZNTimelineScrollView2.h"
 
-@interface ZNTestScrollVC : UIViewController
+@interface ZNTestScrollVC : UIViewController <ZNTimelineScrollDelegate>
 
 @end

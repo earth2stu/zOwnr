@@ -40,7 +40,8 @@
         //timelineView = [[ZNTimelineScrollView alloc] initWithFrame:CGRectMake(0, 0, 435, 275) fromTime:fromTime toTime:toTime withDelegate:self];
         //[self addSubview:timelineView];
         
-        timelineView = [[ZNTimelineScrollView2 alloc] initWithFrame:CGRectMake(0, 0, 435, 275)];
+        timelineView = [[ZNTimelineScrollView2 alloc] initWithFrame:CGRectMake(0, 0, 435, 275) withDelegate:self];
+        [timelineView setTimespanFrom:fromTime to:toTime];
         [self addSubview:timelineView];
         
         socialView = [[ZNSocialView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];

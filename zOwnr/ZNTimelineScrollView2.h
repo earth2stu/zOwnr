@@ -8,22 +8,48 @@
 
 #import <UIKit/UIKit.h>
 #import "ZNTimeMarkerView.h"
+#import "Zone.h"
 
 static const float kZNMinTimeMarkerSize = 20.0f;
 
+@protocol ZNTimelineScrollDelegate <NSObject>
 
+- (void)didScrollToTimespan:(NSDate*)fromTime toTime:(NSDate *)toTime;
+- (Zone*)getCurrentZone;
+
+@end
 
 @interface ZNTimelineScrollView2 : UIScrollView <UIScrollViewDelegate> {
+    
+    // markers
     NSMutableArray *timeMarkers;
     float currentMarkerWidth;
     kZNTimelineMarkerMode currentMarkerMode;
-    float maxMarkerWidth;
-    UIEdgeInsets responseInsets;
+    
+    float minMarkerWidth;
+    int maxMarkers;
+    
+    //float maxMarkerWidth;
+    //UIEdgeInsets responseInsets;
+    
+    // pinch
     UIPinchGestureRecognizer *pinchRecognizer;
     float initialPinchMarkerSize;
     float initialPinchScaleFactor;
-    
     BOOL isZooming;
+    
+    // time
+    NSDate *currentZeroTime;
+    
+    // labels
+    UILabel *leftStaticTime;
+    UILabel *rightStaticTime;
+    
+    // delegate
+    id<ZNTimelineScrollDelegate> scrollDelegate;
+    
+    
+    
 }
 
 @property (assign) UIEdgeInsets responseInsets;
@@ -31,6 +57,9 @@ static const float kZNMinTimeMarkerSize = 20.0f;
 @property (nonatomic, retain) NSDate *maxTime;
 @property (nonatomic, retain) NSDate *startTime;
 @property (nonatomic, retain) NSDate *endTime;
+
+- (id)initWithFrame:(CGRect)frame withDelegate:(id<ZNTimelineScrollDelegate>)del;
+- (void)setTimespanFrom:(NSDate*)fromTime to:(NSDate*)toTime;
 
 //- (id)initWithSuperFrame:(CGRect)superFrame;
 

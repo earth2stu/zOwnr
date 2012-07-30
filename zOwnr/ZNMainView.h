@@ -28,7 +28,7 @@
 
 @end
 
-@interface ZNMainView : UIView <TimelineScrollDelegate, MapViewDelegate> {
+@interface ZNMainView : UIView <ZNTimelineScrollDelegate, MapViewDelegate> {
     
     kQuadrantCorner currentQuadrant;
     

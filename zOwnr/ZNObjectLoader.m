@@ -7,7 +7,7 @@
 //
 
 #import "ZNObjectLoader.h"
-
+#import "ZNSettings.h"
 
 @interface ZNObjectLoader() {
     //NSFetchedResultsController *_fetchedResultsController;
@@ -41,21 +41,36 @@
         [delegate fetchedResults:self.fetchedResultsController.fetchedObjects];
     }
     
-    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:_resourcePath delegate:self];
+    //[[RKObjectManager sharedManager] loadObjectsAtResourcePath:_resourcePath delegate:self];
     
+    
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:_resourcePath usingBlock:^(RKObjectLoader *loader) {
+        objectLoader = loader;
+        loader.additionalHTTPHeaders = [[ZNSettings shared] requestHeaders];
+        loader.delegate = self;
+    }];
     
 }
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
     
     NSLog(@"loaded more");    
-    
+    //NSError *error = nil;
+    //[self.fetchedResultsController performFetch:&error];
+    //[delegate fetchedResults:self.fetchedResultsController.fetchedObjects];
 }
 
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
     NSLog(@"error");
 }
+
+- (void)cancelLoad {
+    [objectLoader.queue cancelRequestsWithDelegate:self];
+    objectLoader = nil;
+}
+
+#pragma mark FetchedResultsController Delegate
 
 - (NSFetchedResultsController*)fetchedResultsController {
     
@@ -70,6 +85,8 @@
     NSManagedObjectContext *moc = [RKObjectManager sharedManager].objectStore.managedObjectContextForCurrentThread;
     
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fr managedObjectContext:moc sectionNameKeyPath:nil cacheName:nil];
+    
+    _fetchedResultsController.delegate = self;
     
     return _fetchedResultsController;
 }

@@ -148,7 +148,7 @@
     
     ZNMapAnnotationView *av = [[ZNMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:NSStringFromClass([annotation class])];
      
-    av.canShowCallout = YES;
+    //av.canShowCallout = YES;
     return av;
     
 }
@@ -192,6 +192,13 @@
     if ([object conformsToProtocol:@protocol(MKAnnotation)]) {
         //
         [mapView addAnnotation:object];
+    }
+}
+
+- (void)fetchedResultsChangeDelete:(id)object {
+    if ([object conformsToProtocol:@protocol(MKAnnotation)]) {
+        //
+        [mapView removeAnnotation:object];
     }
 }
 

@@ -96,4 +96,21 @@
     return d;
 }
 
+#pragma mark MapView
+
+- (NSArray*)annotations {
+    // todo: group all the locations, facilities etc
+    return [self.eventLocations allObjects];
+}
+
+#pragma mark Loadable
+
+- (ZNObjectLoader*)objectLoaderWithDelegate:(id<ZNObjectLoaderDelegate>)delegate {
+    
+    NSString *resourcePath = [NSString stringWithFormat:@"/events/%@", self.eventID];
+
+    return [[ZNObjectLoader alloc] initWithResourcePath:resourcePath andDelegate:delegate];
+
+}
+
 @end

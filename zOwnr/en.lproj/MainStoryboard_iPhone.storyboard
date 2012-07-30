@@ -178,7 +178,7 @@
         <scene sceneID="Pvk-hd-wJG">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCa-8X-FcT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="Roe-4E-RiQ" customClass="ZNTestScrollVC" sceneMemberID="viewController">
+                <viewController id="Roe-4E-RiQ" customClass="ZNBaseViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Y9-Sk-raB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -780,6 +780,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="ZN3DViewController" superclassName="GLKViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ZN3DViewController.h"/>
         </class>
+        <class className="ZNBaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ZNBaseViewController.h"/>
+        </class>
         <class className="ZNDateTimeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ZNDateTimeViewController.h"/>
             <relationships>
@@ -825,9 +828,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="showInfoPage:"/>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
             </relationships>
-        </class>
-        <class className="ZNTestScrollVC" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ZNTestScrollVC.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

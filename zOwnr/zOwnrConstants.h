@@ -54,6 +54,8 @@ static const int kEdgeViewOverlap = 50;
 static NSString *kZNSessionIDKey = @"ZNSessionID";
 static NSString *kZNCurrentUserIDKey = @"ZNCurrentUserID";
 static NSString *kZNChangeSelectionKey = @"ZNChangeSelection";
+static NSString *kZNLoadingSelectionKey = @"ZNLoadingSelection";
+static NSString *kZNLoadedSelectionKey = @"ZNLoadedSelection";
 
 typedef struct {
     GLKVector3      vertex;
