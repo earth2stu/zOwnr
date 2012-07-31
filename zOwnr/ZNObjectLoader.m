@@ -58,16 +58,19 @@
     //NSError *error = nil;
     //[self.fetchedResultsController performFetch:&error];
     //[delegate fetchedResults:self.fetchedResultsController.fetchedObjects];
+    [delegate didFinishRemoteLoad:YES];
 }
 
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
     NSLog(@"error");
+    [delegate didFinishRemoteLoad:NO];
 }
 
 - (void)cancelLoad {
     [objectLoader.queue cancelRequestsWithDelegate:self];
     objectLoader = nil;
+    [delegate didFinishRemoteLoad:NO];
 }
 
 #pragma mark FetchedResultsController Delegate

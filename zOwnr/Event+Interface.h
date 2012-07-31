@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZNTimelineView.h"
+#import "ZNTimelineScrollView2.h"
 #import "ZNTimelineRowView.h"
 #import "Event.h"
 #import <MapKit/MapKit.h>

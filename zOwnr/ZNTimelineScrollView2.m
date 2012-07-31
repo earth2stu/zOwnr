@@ -9,6 +9,7 @@
 // min frame width is 240 or zooming between days, quarter days, half days, days wont work
 
 #import "ZNTimelineScrollView2.h"
+#import "ZNMenuItem.h"
 
 @interface ZNTimelineScrollView2() {
     
@@ -76,6 +77,11 @@
         //[self insertSubview:rightStaticTime atIndex:-100];
         
         [self setMarkersToCurrentWidth];
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectObject:) name:kZNChangeSelectionKey object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadObject:) name:kZNLoadedSelectionKey object:nil];
         
         //[self didSelectTimePeriod];
     }
@@ -633,5 +639,55 @@
     // Drawing code
 }
 */
+
+
+#pragma mark MenuView
+
+- (NSDictionary*)menuGroups {
+    
+    ZNMenuItem *i = [[ZNMenuItem alloc] init];
+    i.title = @"test timeline menu item";
+    
+    NSArray *items = [NSArray arrayWithObject:i];
+    
+    NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:items, @"Test Group", nil];
+    
+    //NSMutableDictionary *allGroups = [NSMutableDictionary dictionaryWithDictionary:[super standardMenuGroups]];
+    // oops we aren't a subclass of the base class :(
+    
+    NSMutableDictionary *allGroups = [NSMutableDictionary dictionary];
+    
+    [allGroups addEntriesFromDictionary:d];
+    
+    return allGroups;
+    
+}
+
+#pragma mark Notifications
+
+- (void)didLoadObject:(NSNotification*)notification {
+    id object = notification.object;
+    
+    if ([object conformsToProtocol:@protocol(ZNTimelineView)]) {
+        
+        id<ZNTimelineView> o = (id<ZNTimelineView>)object;
+        
+        [self setTimespanFrom:[o startTime] to:[o endTime]];
+    }
+}
+
+- (void)didSelectObject:(NSNotification*)notification {
+    
+    id object = notification.object;
+    
+    if ([object conformsToProtocol:@protocol(ZNTimelineView)]) {
+        
+        id<ZNTimelineView> o = (id<ZNTimelineView>)object;
+        
+        [self setTimespanFrom:[o startTime] to:[o endTime]];
+    }
+    
+}
+
 
 @end

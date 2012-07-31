@@ -9,8 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "ZNTimeMarkerView.h"
 #import "Zone.h"
+#import "ZNMenuView.h"
+#import "ZNMainBaseView.h"
 
 static const float kZNMinTimeMarkerSize = 20.0f;
+
+
+@protocol ZNTimelineView <NSObject>
+
+- (NSArray*)rows;
+- (NSDate*)startTime;
+- (NSDate*)endTime;
+
+@end
+
 
 @protocol ZNTimelineScrollDelegate <NSObject>
 
@@ -19,7 +31,7 @@ static const float kZNMinTimeMarkerSize = 20.0f;
 
 @end
 
-@interface ZNTimelineScrollView2 : UIScrollView <UIScrollViewDelegate> {
+@interface ZNTimelineScrollView2 : UIScrollView <UIScrollViewDelegate, ZNMenuView> {
     
     // markers
     NSMutableArray *timeMarkers;

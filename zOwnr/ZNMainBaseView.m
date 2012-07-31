@@ -9,6 +9,7 @@
 #import "ZNMainBaseView.h"
 #import "ZNMenuItem.h"
 #import "ZNSettings.h"
+#import "ZNMenuView.h"
 
 @implementation ZNMainBaseView
 
@@ -17,6 +18,10 @@
     //i.title = @"Create Event";
     
     //NSArray *items = [NSArray arrayWithObject:i];
+    
+    ZNSettings *settings = [ZNSettings shared];
+    
+    NSMutableDictionary *standardGroups = [NSMutableDictionary dictionary];
     
     NSMutableArray *items = [NSMutableArray array];
     
@@ -28,7 +33,14 @@
     
     NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:items, @"zOwnr", nil];
     
-    return d;
+    [standardGroups addEntriesFromDictionary:d];
+    
+    if ([settings.currentSelection conformsToProtocol:@protocol(ZNMenuView)]) {
+        id<ZNMenuView> currentSelection = (id<ZNMenuView>)settings.currentSelection;
+        [standardGroups addEntriesFromDictionary:[currentSelection menuGroups]];
+    }
+    
+    return standardGroups;
 }
 
 

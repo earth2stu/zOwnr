@@ -19,6 +19,8 @@
     return [self.eventLocations allObjects];
 }
 
+// startTime and endTime already exist!!
+
 /*
 - (NSDate*)startTime {
     return self.startTime;
@@ -82,7 +84,12 @@
         [menuItems addObject:[[ZNMenuItem alloc] initWithTitle:@"Select Event" andTarget:kMenuTargetSettings andSelector:@selector(setCurrentSelection:) andSelected:self]];
     } else {
         // event is selected
+        
+        // show timeline option
         [menuItems addObject:[[ZNMenuItem alloc] initWithTitle:@"Show timeline" andTarget:kMenuTargetSettings andSelector:@selector(setCurrentSelection:) andSelected:self]];
+        
+        // exit this event option
+        [menuItems addObject:[[ZNMenuItem alloc] initWithTitle:@"Exit Event" andTarget:kMenuTargetSettings andSelector:@selector(setCurrentSelection:) andSelected:s.currentZone]];
     }
     
     
@@ -100,7 +107,9 @@
 
 - (NSArray*)annotations {
     // todo: group all the locations, facilities etc
-    return [self.eventLocations allObjects];
+    NSMutableArray *annotations = [NSMutableArray arrayWithArray:[self.eventLocations allObjects]];
+    [annotations addObject:self];
+    return annotations;
 }
 
 #pragma mark Loadable

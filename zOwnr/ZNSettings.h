@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "ZNObjectLoader.h"
+#import "Zone.h"
 
 @protocol ZNSettingsDelegate <NSObject>
 
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) User *currentUser;
 @property (nonatomic, retain) NSString *currentSession;
 @property (nonatomic, retain) id<ZNSelectable> currentSelection;
+@property (nonatomic, retain) Zone *currentZone;
 
 - (BOOL)isCurrentUser;
 - (BOOL)isLoggedIn;

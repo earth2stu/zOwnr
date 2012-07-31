@@ -14,12 +14,14 @@
 // just for the fetched results test
 #import "ZNTimelineView.h"
 #import "ZNMenuItem.h"
+#import "Event.h"
 
 @interface ZNMapView() {
     id<MapViewDelegate> _delegate;
 }
 
 - (void)updateData;
+- (void)showAnnotationsForObject:(id<ZNMapView>)object;
 
 @end
 
@@ -40,11 +42,29 @@
         //isLocatingUser = YES;
         [self zoomToUserLocation];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectObject:) name:kZNChangeSelectionKey object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadObject:) name:kZNLoadedSelectionKey object:nil];
+        
+        
         //self.fetchedResultsController.delegate = self;
         
     }
     return self;
 }
+
+
+
+- (void)showAnnotationsForObject:(id<ZNMapView>)object {
+    
+    NSArray *annotations = [object annotations];
+    
+    for (id<MKAnnotation> ann in annotations) {
+        [mapView addAnnotation:ann];
+    }
+}
+
+
 
 - (void)zoomToUserLocation {
     isLocatingUser = YES;
@@ -168,7 +188,12 @@
 
 #pragma mark DataUpdates
 
+- (void)didFinishRemoteLoad:(BOOL)success {
+    NSLog(@"loaded some stuff");
+}
+
 - (void)fetchedResults:(NSArray *)results {
+    NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithArray:[mapView annotations]];
     for (id o in results) {
         /*
         if ([o conformsToProtocol:@protocol(MKOverlay)]) {
@@ -183,9 +208,10 @@
             //
             
             [mapView addAnnotation:o];
-            
+            [annotationsToRemove removeObject:o];
         }
     }
+    [mapView removeAnnotations:annotationsToRemove];
 }
 
 - (void)fetchedResultsChangeInsert:(id)object {
@@ -200,6 +226,10 @@
         //
         [mapView removeAnnotation:object];
     }
+}
+
+- (void)fetchedResultsChangeUpdate:(id)object {
+    NSLog(@"something updated?!");
 }
 
 
@@ -264,6 +294,43 @@
     return allGroups;
     
 }
+
+
+#pragma mark Notifications
+
+- (void)didLoadObject:(NSNotification*)notification {
+    id object = notification.object;
+    
+    if ([object conformsToProtocol:@protocol(ZNMapView)]) {
+        [self showAnnotationsForObject:object];
+    }
+}
+
+- (void)didSelectObject:(NSNotification*)notification {
+    
+    id object = notification.object;
+    
+    if ([object conformsToProtocol:@protocol(ZNMapView)]) {
+        if ([object isKindOfClass:[Event class]]) {
+            // zoom to this event
+            NSLog(@"wow we selected an event");
+            
+            Event *event = (Event*)object;
+            
+            
+            MKMapPoint nw = MKMapPointForCoordinate(CLLocationCoordinate2DMake([event.latitudeNW floatValue], [event.longitudeNW floatValue]));
+            MKMapPoint se = MKMapPointForCoordinate(CLLocationCoordinate2DMake([event.latitudeSE floatValue], [event.longitudeSE floatValue]));
+            
+            MKMapRect rect = MKMapRectMake(nw.x, nw.y, (se.x - nw.x), (se.y - nw.y));
+            
+            [mapView setVisibleMapRect:rect animated:YES];
+            
+            [self showAnnotationsForObject:object];
+        }
+    }
+    
+}
+
 
 #pragma mark FetchRequestControllerDelegate
 

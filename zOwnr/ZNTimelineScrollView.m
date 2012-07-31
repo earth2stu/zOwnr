@@ -65,7 +65,7 @@
     
 }
 
-- (id)initWithFrame:(CGRect)frame andObject:(id<ZNTimelineView>)timelineObj
+- (id)initWithFrame:(CGRect)frame andObject:(id<ZNTimelineViewOld>)timelineObj
 {
     //return [self initWithFrame:frame fromTime:timelineObj toTime:<#(NSDate *)#> withDelegate:<#(id<TimelineScrollDelegate>)#>
     self = [super initWithFrame:frame];
@@ -211,7 +211,7 @@
 - (void)changeSelection:(NSNotification *)notification {
     id notifObject = notification.object;
     
-    if ([notifObject conformsToProtocol:@protocol(ZNTimelineView)]) {
+    if ([notifObject conformsToProtocol:@protocol(ZNTimelineViewOld)]) {
         // this object can be shown on the timeline ..
         NSLog(@"got a timeline compatible object");
     }

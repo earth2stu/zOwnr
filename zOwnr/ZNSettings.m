@@ -7,6 +7,7 @@
 //
 
 #import "ZNSettings.h"
+#import "ZownrService.h"
 
 @implementation ZNSettings
 
@@ -14,6 +15,7 @@
 @synthesize currentUser = _currentUser;
 @synthesize currentSession = _currentSession;
 @synthesize currentSelection = _currentSelection;
+@synthesize currentZone = _currentZone;
 
 + (ZNSettings *)shared
 {
@@ -74,7 +76,11 @@
     _currentSelection = currentSelection;
     //[delegate setCurrentSelection:currentSelection];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeSelectionKey object:_currentSelection];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeSelectionKey object:currentSelection];
+    
+    if ([currentSelection conformsToProtocol:@protocol(ZNLoadable)]) {
+        [[ZownrService sharedInstance] loadObject:(id<ZNLoadable>)currentSelection];
+    }
  
 }
 

@@ -9,12 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <RestKit/RestKit.h>
 #import <RestKit/CoreData.h>
+#import "ZNObjectLoader.h"
 
-@interface ZownrService : NSObject
+@interface ZownrService : NSObject <ZNObjectLoaderDelegate> {
+    ZNObjectLoader *loader;
+    id<ZNLoadable> loadingObject;
+
+}
 
 
 
 + (ZownrService *)sharedInstance;
 - (void)initModel;
+- (void)loadObject:(id<ZNLoadable>)object;
 
 @end

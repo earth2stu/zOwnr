@@ -114,6 +114,7 @@
     [eventLocationMapping mapRelationship:@"event" withMapping:eventMapping];
     
     
+    
     [eventMapping mapKeyPath:@"eventLocations" toRelationship:@"eventLocations" withMapping:eventLocationMapping];
     
     
@@ -582,6 +583,57 @@
 - (Event*) getEventByID:(NSNumber*)eventID {
     
 }
+
+- (void)loadObject:(id<ZNLoadable>)object {
+    
+    if (![object conformsToProtocol:@protocol(ZNLoadable)]) {
+        return;
+    }
+    
+    if (loader) {
+        [loader cancelLoad];
+        loadingObject = nil;
+        loader = nil;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kZNLoadingSelectionKey object:object];
+    
+    loadingObject = object;
+    loader = [object objectLoaderWithDelegate:self];
+
+}
+
+#pragma mark ZNObjectLoaderDelegate
+
+
+- (void)fetchedResults:(NSArray *)results {
+    
+}
+
+- (void)fetchedResultsChangeInsert:(id)object {
+    
+}
+
+- (void)fetchedResultsChangeDelete:(id)object {
+    
+}
+
+- (void)fetchedResultsChangeUpdate:(id)object {
+    
+}
+
+- (void)didFinishRemoteLoad:(BOOL)success {
+    if (success) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kZNLoadedSelectionKey object:loadingObject];
+        
+    }
+    
+    loader = nil;
+    loadingObject = nil;
+}
+
+
+
 
 
 @end

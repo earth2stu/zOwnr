@@ -12,11 +12,7 @@
 @protocol TimelineCell;
 @protocol TimelineRow;
 
-@protocol ZNTimelineView <NSObject>
 
-- (NSArray*)rows;
-
-@end
 
 @protocol TimelineDelegate <NSObject>
 

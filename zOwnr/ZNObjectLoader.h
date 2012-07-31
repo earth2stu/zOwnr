@@ -20,7 +20,7 @@
 - (void)fetchedResultsChangeInsert:(id)object;
 - (void)fetchedResultsChangeDelete:(id)object;
 - (void)fetchedResultsChangeUpdate:(id)object;
-
+- (void)didFinishRemoteLoad:(BOOL)success;
 
 @end
 

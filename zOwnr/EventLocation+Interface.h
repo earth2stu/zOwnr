@@ -10,7 +10,8 @@
 #import "ZNTimelineRowView.h"
 #import "Event.h"
 #import "EventLocation.h"
+#import "ZNMapAnnotationView.h"
 
-@interface EventLocation (Timeline) <ZNTimelineRowView>
+@interface EventLocation (Timeline) <ZNTimelineRowView, ZNMapPinView, MKAnnotation>
 
 @end

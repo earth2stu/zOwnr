@@ -135,6 +135,13 @@
 		20B670C41537D8AB00135C4B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B670C31537D8AB00135C4B /* CoreMotion.framework */; };
 		20B670C71537E40600135C4B /* EventItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B670C61537E40600135C4B /* EventItem.m */; };
 		20BB3B7C15BC33DC006F00EE /* TimelineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BB3B7B15BC33DB006F00EE /* TimelineScrollView.m */; };
+		20BE258515C7C3EB00B3ABF1 /* annotation_person.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE257E15C7C3EB00B3ABF1 /* annotation_person.png */; };
+		20BE258615C7C3EB00B3ABF1 /* facility_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE257F15C7C3EB00B3ABF1 /* facility_bar.png */; };
+		20BE258715C7C3EB00B3ABF1 /* facility_exit.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258015C7C3EB00B3ABF1 /* facility_exit.png */; };
+		20BE258815C7C3EB00B3ABF1 /* facility_medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258115C7C3EB00B3ABF1 /* facility_medical.png */; };
+		20BE258915C7C3EB00B3ABF1 /* facility_merchandise.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258215C7C3EB00B3ABF1 /* facility_merchandise.png */; };
+		20BE258A15C7C3EB00B3ABF1 /* facility_music.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258315C7C3EB00B3ABF1 /* facility_music.png */; };
+		20BE258B15C7C3EB00B3ABF1 /* facility_toilet.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258415C7C3EB00B3ABF1 /* facility_toilet.png */; };
 		20C19DA31538341D006B757F /* UserMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19DA21538341D006B757F /* UserMedia.m */; };
 		20C19DA615383A92006B757F /* EventItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19DA515383A92006B757F /* EventItemView.m */; };
 		20C19DA815383AAD006B757F /* EventItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C19DA715383AAD006B757F /* EventItemView.xib */; };
@@ -431,6 +438,13 @@
 		20B670C61537E40600135C4B /* EventItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventItem.m; sourceTree = "<group>"; };
 		20BB3B7A15BC33DB006F00EE /* TimelineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineScrollView.h; sourceTree = "<group>"; };
 		20BB3B7B15BC33DB006F00EE /* TimelineScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineScrollView.m; sourceTree = "<group>"; };
+		20BE257E15C7C3EB00B3ABF1 /* annotation_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = annotation_person.png; sourceTree = "<group>"; };
+		20BE257F15C7C3EB00B3ABF1 /* facility_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_bar.png; sourceTree = "<group>"; };
+		20BE258015C7C3EB00B3ABF1 /* facility_exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_exit.png; sourceTree = "<group>"; };
+		20BE258115C7C3EB00B3ABF1 /* facility_medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_medical.png; sourceTree = "<group>"; };
+		20BE258215C7C3EB00B3ABF1 /* facility_merchandise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_merchandise.png; sourceTree = "<group>"; };
+		20BE258315C7C3EB00B3ABF1 /* facility_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_music.png; sourceTree = "<group>"; };
+		20BE258415C7C3EB00B3ABF1 /* facility_toilet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_toilet.png; sourceTree = "<group>"; };
 		20C19DA11538341D006B757F /* UserMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMedia.h; sourceTree = "<group>"; };
 		20C19DA21538341D006B757F /* UserMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMedia.m; sourceTree = "<group>"; };
 		20C19DA415383A92006B757F /* EventItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventItemView.h; sourceTree = "<group>"; };
@@ -564,6 +578,7 @@
 		2028B87D1538540800F55021 /* MapIcons */ = {
 			isa = PBXGroup;
 			children = (
+				20BE257D15C7C3D400B3ABF1 /* Facilities */,
 				2028B87E1538540800F55021 /* 360degrees.png */,
 				2028B87F1538540800F55021 /* audio.png */,
 				2028B8801538540800F55021 /* award.png */,
@@ -1014,6 +1029,20 @@
 			name = PostMedia;
 			sourceTree = "<group>";
 		};
+		20BE257D15C7C3D400B3ABF1 /* Facilities */ = {
+			isa = PBXGroup;
+			children = (
+				20BE257E15C7C3EB00B3ABF1 /* annotation_person.png */,
+				20BE257F15C7C3EB00B3ABF1 /* facility_bar.png */,
+				20BE258015C7C3EB00B3ABF1 /* facility_exit.png */,
+				20BE258115C7C3EB00B3ABF1 /* facility_medical.png */,
+				20BE258215C7C3EB00B3ABF1 /* facility_merchandise.png */,
+				20BE258315C7C3EB00B3ABF1 /* facility_music.png */,
+				20BE258415C7C3EB00B3ABF1 /* facility_toilet.png */,
+			);
+			name = Facilities;
+			sourceTree = "<group>";
+		};
 		20D6E3D115C1435E001B1B15 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1406,6 +1435,13 @@
 				2034EE7215C27B73002CE091 /* Icon.png in Resources */,
 				2034EE7415C27B79002CE091 /* Icon@2x.png in Resources */,
 				2034EE7615C27C1B002CE091 /* Default.png in Resources */,
+				20BE258515C7C3EB00B3ABF1 /* annotation_person.png in Resources */,
+				20BE258615C7C3EB00B3ABF1 /* facility_bar.png in Resources */,
+				20BE258715C7C3EB00B3ABF1 /* facility_exit.png in Resources */,
+				20BE258815C7C3EB00B3ABF1 /* facility_medical.png in Resources */,
+				20BE258915C7C3EB00B3ABF1 /* facility_merchandise.png in Resources */,
+				20BE258A15C7C3EB00B3ABF1 /* facility_music.png in Resources */,
+				20BE258B15C7C3EB00B3ABF1 /* facility_toilet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

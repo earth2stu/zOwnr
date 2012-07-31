@@ -10,12 +10,26 @@
 
 @implementation EventLocation (Timeline)
 
+
+
+#pragma mark PinView Protocol
+
+- (NSString*)imageName {
+    return @"facility_music.png";
+}
+
+#pragma mark MKAnnotation Protocol
+
 - (NSString*)title {
     return self.name;
 }
 
-- (NSDate*)startTime {
-    
+- (NSString*)subtitle {
+    return @"";
+}
+
+- (CLLocationCoordinate2D) coordinate {
+    return CLLocationCoordinate2DMake(([self.latitudeSE floatValue] + [self.latitudeNW floatValue]) / 2.0f, ([self.longitudeSE floatValue] + [self.longitudeNW floatValue]) / 2.0f);
 }
 
 @end
