@@ -56,6 +56,7 @@ static NSString *kZNCurrentUserIDKey = @"ZNCurrentUserID";
 static NSString *kZNChangeSelectionKey = @"ZNChangeSelection";
 static NSString *kZNLoadingSelectionKey = @"ZNLoadingSelection";
 static NSString *kZNLoadedSelectionKey = @"ZNLoadedSelection";
+static NSString *kZNChangeZoneKey = @"ZNChangeZone";
 
 typedef struct {
     GLKVector3      vertex;

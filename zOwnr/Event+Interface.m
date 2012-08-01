@@ -89,7 +89,7 @@
         [menuItems addObject:[[ZNMenuItem alloc] initWithTitle:@"Show timeline" andTarget:kMenuTargetSettings andSelector:@selector(setCurrentSelection:) andSelected:self]];
         
         // exit this event option
-        [menuItems addObject:[[ZNMenuItem alloc] initWithTitle:@"Exit Event" andTarget:kMenuTargetSettings andSelector:@selector(setCurrentSelection:) andSelected:s.currentZone]];
+        [menuItems addObject:[[ZNMenuItem alloc] initWithTitle:@"Exit Event" andTarget:kMenuTargetSettings andSelector:@selector(setCurrentSelection:) andSelected:nil]];
     }
     
     

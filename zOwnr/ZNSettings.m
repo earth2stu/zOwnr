@@ -76,12 +76,39 @@
     _currentSelection = currentSelection;
     //[delegate setCurrentSelection:currentSelection];
     
+    NSLog(@"changed selection notification");
     [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeSelectionKey object:currentSelection];
     
     if ([currentSelection conformsToProtocol:@protocol(ZNLoadable)]) {
         [[ZownrService sharedInstance] loadObject:(id<ZNLoadable>)currentSelection];
     }
  
+}
+
+- (Zone*)currentZone {
+    if (!_currentZone) {
+        _currentZone = [[Zone alloc] init];
+    }
+    return _currentZone;
+}
+
+- (void)updateCurrentZone:(CLLocationCoordinate2D)pointNW pointSE:(CLLocationCoordinate2D)pointSE fromTime:(NSDate *)fromTime toTime:(NSDate *)toTime {
+    if (CLLocationCoordinate2DIsValid(pointNW) && CLLocationCoordinate2DIsValid(pointSE)) {
+        self.currentZone.pointNW = pointNW;
+        self.currentZone.pointSE = pointSE;
+    }
+    if (fromTime && toTime) {
+        if (fromTime < toTime) {
+            self.currentZone.fromTime = fromTime;
+            self.currentZone.toTime = toTime;
+        }
+    }
+    
+    if (CLLocationCoordinate2DIsValid(self.currentZone.pointNW) && CLLocationCoordinate2DIsValid(self.currentZone.pointSE) && self.currentZone.fromTime && self.currentZone.toTime) {
+        NSLog(@"changed zone notification");
+        [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeZoneKey object:self.currentZone];
+    }
+    
 }
 
 - (NSDictionary*)requestHeaders {

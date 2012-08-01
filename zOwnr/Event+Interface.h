@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZNTimelineScrollView2.h"
+#import "ZNTimelineView.h"
 #import "ZNTimelineRowView.h"
 #import "Event.h"
 #import <MapKit/MapKit.h>
@@ -23,7 +23,7 @@
                                 ZNMapPinView, // view to show on map
                                 ZNSelectable, // can be selected
                                 ZNLoadable,  // can be loaded
-                                ZNMapView> // can be the base object for a mapview
+                                ZNMapView> // can be the root object for a mapview
                                     
 
 @end

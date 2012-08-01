@@ -600,6 +600,8 @@
     
     loadingObject = object;
     loader = [object objectLoaderWithDelegate:self];
+    [loader loadLocal];
+    [loader loadRemote];
 
 }
 

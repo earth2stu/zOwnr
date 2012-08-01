@@ -74,17 +74,13 @@
 		2034EE7215C27B73002CE091 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034EE7115C27B73002CE091 /* Icon.png */; };
 		2034EE7415C27B79002CE091 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034EE7315C27B79002CE091 /* Icon@2x.png */; };
 		2034EE7615C27C1B002CE091 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2034EE7515C27C1B002CE091 /* Default.png */; };
-		2034EE9715C2A617002CE091 /* ZNTestScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2034EE9615C2A616002CE091 /* ZNTestScrollVC.m */; };
 		2037712315BC64B0004C1E6D /* Event+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037712215BC64B0004C1E6D /* Event+Interface.m */; };
 		2037713B15BC64B0004C1E6D /* ZNTimelineBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037713A15BC64B0004C1E6D /* ZNTimelineBarView.m */; };
 		2037713E15BC64B0004C1E6D /* EventLocation+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037713D15BC64B0004C1E6D /* EventLocation+Interface.m */; };
 		2037714115BC64B0004C1E6D /* ZNTimelineRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037714015BC64B0004C1E6D /* ZNTimelineRowView.m */; };
 		2037714415BC64B0004C1E6D /* ZNTimelineCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037714315BC64B0004C1E6D /* ZNTimelineCellView.m */; };
 		2037714715BC64B0004C1E6D /* EventItem+Interface.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037714615BC64B0004C1E6D /* EventItem+Interface.m */; };
-		2037714A15BC64B0004C1E6D /* ZNTimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037714915BC64B0004C1E6D /* ZNTimelineView.m */; };
-		2037714D15BC64B0004C1E6D /* ZNTimelineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037714C15BC64B0004C1E6D /* ZNTimelineScrollView.m */; };
 		2037715015BC64B0004C1E6D /* EventGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037714F15BC64B0004C1E6D /* EventGroup.m */; };
-		2037715315BC64B0004C1E6D /* ZNTestTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037715215BC64B0004C1E6D /* ZNTestTimelineViewController.m */; };
 		2037718615BD1B3E004C1E6D /* ZNMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037718515BD1B3E004C1E6D /* ZNMainView.m */; };
 		2037718D15BD1BC6004C1E6D /* ZNMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037718C15BD1BC5004C1E6D /* ZNMenuView.m */; };
 		2037719015BD1E02004C1E6D /* ZNBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2037718F15BD1DFF004C1E6D /* ZNBaseViewController.m */; };
@@ -142,11 +138,13 @@
 		20BE258915C7C3EB00B3ABF1 /* facility_merchandise.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258215C7C3EB00B3ABF1 /* facility_merchandise.png */; };
 		20BE258A15C7C3EB00B3ABF1 /* facility_music.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258315C7C3EB00B3ABF1 /* facility_music.png */; };
 		20BE258B15C7C3EB00B3ABF1 /* facility_toilet.png in Resources */ = {isa = PBXBuildFile; fileRef = 20BE258415C7C3EB00B3ABF1 /* facility_toilet.png */; };
+		20BE25A015C7D90800B3ABF1 /* ZNTimelineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BE259F15C7D90700B3ABF1 /* ZNTimelineView.m */; };
+		20BE25A615C8018400B3ABF1 /* ZNTimelineContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BE25A515C8018400B3ABF1 /* ZNTimelineContentView.m */; };
 		20C19DA31538341D006B757F /* UserMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19DA21538341D006B757F /* UserMedia.m */; };
 		20C19DA615383A92006B757F /* EventItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19DA515383A92006B757F /* EventItemView.m */; };
 		20C19DA815383AAD006B757F /* EventItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C19DA715383AAD006B757F /* EventItemView.xib */; };
 		20D6E3D415C14391001B1B15 /* ZNTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3D315C14391001B1B15 /* ZNTabBar.m */; };
-		20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView2.m */; };
+		20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView.m */; };
 		20D6E3EC15C217E9001B1B15 /* ZNTimeMarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */; };
 		20D75DE215BFAC3100CB225B /* ZNSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DE115BFAC3100CB225B /* ZNSocialView.m */; };
 		20D75DE515BFAC4100CB225B /* ZNMediaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DE415BFAC4100CB225B /* ZNMediaView.m */; };
@@ -324,8 +322,6 @@
 		2034EE7115C27B73002CE091 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		2034EE7315C27B79002CE091 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		2034EE7515C27C1B002CE091 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		2034EE9515C2A616002CE091 /* ZNTestScrollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTestScrollVC.h; sourceTree = "<group>"; };
-		2034EE9615C2A616002CE091 /* ZNTestScrollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTestScrollVC.m; sourceTree = "<group>"; };
 		2037712115BC64B0004C1E6D /* Event+Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+Interface.h"; sourceTree = "<group>"; };
 		2037712215BC64B0004C1E6D /* Event+Interface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+Interface.m"; sourceTree = "<group>"; };
 		2037713915BC64B0004C1E6D /* ZNTimelineBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineBarView.h; sourceTree = "<group>"; };
@@ -338,14 +334,8 @@
 		2037714315BC64B0004C1E6D /* ZNTimelineCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineCellView.m; sourceTree = "<group>"; };
 		2037714515BC64B0004C1E6D /* EventItem+Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EventItem+Interface.h"; sourceTree = "<group>"; };
 		2037714615BC64B0004C1E6D /* EventItem+Interface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EventItem+Interface.m"; sourceTree = "<group>"; };
-		2037714815BC64B0004C1E6D /* ZNTimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineView.h; sourceTree = "<group>"; };
-		2037714915BC64B0004C1E6D /* ZNTimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineView.m; sourceTree = "<group>"; };
-		2037714B15BC64B0004C1E6D /* ZNTimelineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineScrollView.h; sourceTree = "<group>"; };
-		2037714C15BC64B0004C1E6D /* ZNTimelineScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineScrollView.m; sourceTree = "<group>"; };
 		2037714E15BC64B0004C1E6D /* EventGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventGroup.h; sourceTree = "<group>"; };
 		2037714F15BC64B0004C1E6D /* EventGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventGroup.m; sourceTree = "<group>"; };
-		2037715115BC64B0004C1E6D /* ZNTestTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTestTimelineViewController.h; sourceTree = "<group>"; };
-		2037715215BC64B0004C1E6D /* ZNTestTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTestTimelineViewController.m; sourceTree = "<group>"; };
 		2037718415BD1B3E004C1E6D /* ZNMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNMainView.h; sourceTree = "<group>"; };
 		2037718515BD1B3E004C1E6D /* ZNMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNMainView.m; sourceTree = "<group>"; };
 		2037718B15BD1BC5004C1E6D /* ZNMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNMenuView.h; sourceTree = "<group>"; };
@@ -445,6 +435,10 @@
 		20BE258215C7C3EB00B3ABF1 /* facility_merchandise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_merchandise.png; sourceTree = "<group>"; };
 		20BE258315C7C3EB00B3ABF1 /* facility_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_music.png; sourceTree = "<group>"; };
 		20BE258415C7C3EB00B3ABF1 /* facility_toilet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facility_toilet.png; sourceTree = "<group>"; };
+		20BE259E15C7D90500B3ABF1 /* ZNTimelineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineView.h; sourceTree = "<group>"; };
+		20BE259F15C7D90700B3ABF1 /* ZNTimelineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineView.m; sourceTree = "<group>"; };
+		20BE25A415C8018400B3ABF1 /* ZNTimelineContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineContentView.h; sourceTree = "<group>"; };
+		20BE25A515C8018400B3ABF1 /* ZNTimelineContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineContentView.m; sourceTree = "<group>"; };
 		20C19DA11538341D006B757F /* UserMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMedia.h; sourceTree = "<group>"; };
 		20C19DA21538341D006B757F /* UserMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMedia.m; sourceTree = "<group>"; };
 		20C19DA415383A92006B757F /* EventItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventItemView.h; sourceTree = "<group>"; };
@@ -452,8 +446,8 @@
 		20C19DA715383AAD006B757F /* EventItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventItemView.xib; sourceTree = "<group>"; };
 		20D6E3D215C14391001B1B15 /* ZNTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTabBar.h; sourceTree = "<group>"; };
 		20D6E3D315C14391001B1B15 /* ZNTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTabBar.m; sourceTree = "<group>"; };
-		20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineScrollView2.h; sourceTree = "<group>"; };
-		20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineScrollView2.m; sourceTree = "<group>"; };
+		20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineScrollView.h; sourceTree = "<group>"; };
+		20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineScrollView.m; sourceTree = "<group>"; };
 		20D6E3EA15C217E8001B1B15 /* ZNTimeMarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimeMarkerView.h; sourceTree = "<group>"; };
 		20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimeMarkerView.m; sourceTree = "<group>"; };
 		20D75DE015BFAC3100CB225B /* ZNSocialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNSocialView.h; sourceTree = "<group>"; };
@@ -666,12 +660,6 @@
 		2034EEE315C6093F002CE091 /* old */ = {
 			isa = PBXGroup;
 			children = (
-				2037714B15BC64B0004C1E6D /* ZNTimelineScrollView.h */,
-				2037714C15BC64B0004C1E6D /* ZNTimelineScrollView.m */,
-				2037714815BC64B0004C1E6D /* ZNTimelineView.h */,
-				2037714915BC64B0004C1E6D /* ZNTimelineView.m */,
-				2037713815BC64B0004C1E6D /* TimelineCell */,
-				2037713715BC64B0004C1E6D /* TimelineRow */,
 				2037713615BC64B0004C1E6D /* TimelineBar */,
 				20B670891537CA7C00135C4B /* EventItemViewController.h */,
 				20B6708A1537CA7C00135C4B /* EventItemViewController.m */,
@@ -692,8 +680,6 @@
 				205A8F921539A5FC0044134C /* CurrentTimeView.m */,
 				20BB3B7A15BC33DB006F00EE /* TimelineScrollView.h */,
 				20BB3B7B15BC33DB006F00EE /* TimelineScrollView.m */,
-				2037715115BC64B0004C1E6D /* ZNTestTimelineViewController.h */,
-				2037715215BC64B0004C1E6D /* ZNTestTimelineViewController.m */,
 			);
 			name = old;
 			sourceTree = "<group>";
@@ -1009,13 +995,14 @@
 		20B6706A153639A600135C4B /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView2.h */,
-				20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView2.m */,
-				20D6E3EA15C217E8001B1B15 /* ZNTimeMarkerView.h */,
-				20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */,
+				20BE259E15C7D90500B3ABF1 /* ZNTimelineView.h */,
+				20BE259F15C7D90700B3ABF1 /* ZNTimelineView.m */,
+				20BE25A215C7D92800B3ABF1 /* ScrollView */,
+				20BE25A315C8014D00B3ABF1 /* TimelineContentView */,
+				20BE25A115C7D91A00B3ABF1 /* TimeMarker */,
+				2037713815BC64B0004C1E6D /* TimelineCell */,
+				2037713715BC64B0004C1E6D /* TimelineRow */,
 				2034EEE315C6093F002CE091 /* old */,
-				2034EE9515C2A616002CE091 /* ZNTestScrollVC.h */,
-				2034EE9615C2A616002CE091 /* ZNTestScrollVC.m */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -1041,6 +1028,33 @@
 				20BE258415C7C3EB00B3ABF1 /* facility_toilet.png */,
 			);
 			name = Facilities;
+			sourceTree = "<group>";
+		};
+		20BE25A115C7D91A00B3ABF1 /* TimeMarker */ = {
+			isa = PBXGroup;
+			children = (
+				20D6E3EA15C217E8001B1B15 /* ZNTimeMarkerView.h */,
+				20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */,
+			);
+			name = TimeMarker;
+			sourceTree = "<group>";
+		};
+		20BE25A215C7D92800B3ABF1 /* ScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView.h */,
+				20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView.m */,
+			);
+			name = ScrollView;
+			sourceTree = "<group>";
+		};
+		20BE25A315C8014D00B3ABF1 /* TimelineContentView */ = {
+			isa = PBXGroup;
+			children = (
+				20BE25A415C8018400B3ABF1 /* ZNTimelineContentView.h */,
+				20BE25A515C8018400B3ABF1 /* ZNTimelineContentView.m */,
+			);
+			name = TimelineContentView;
 			sourceTree = "<group>";
 		};
 		20D6E3D115C1435E001B1B15 /* TabBar */ = {
@@ -1531,10 +1545,7 @@
 				2037714115BC64B0004C1E6D /* ZNTimelineRowView.m in Sources */,
 				2037714415BC64B0004C1E6D /* ZNTimelineCellView.m in Sources */,
 				2037714715BC64B0004C1E6D /* EventItem+Interface.m in Sources */,
-				2037714A15BC64B0004C1E6D /* ZNTimelineView.m in Sources */,
-				2037714D15BC64B0004C1E6D /* ZNTimelineScrollView.m in Sources */,
 				2037715015BC64B0004C1E6D /* EventGroup.m in Sources */,
-				2037715315BC64B0004C1E6D /* ZNTestTimelineViewController.m in Sources */,
 				2037718615BD1B3E004C1E6D /* ZNMainView.m in Sources */,
 				2037718D15BD1BC6004C1E6D /* ZNMenuView.m in Sources */,
 				2037719015BD1E02004C1E6D /* ZNBaseViewController.m in Sources */,
@@ -1553,9 +1564,10 @@
 				20D75DFD15C02D4900CB225B /* ZNSocialLoginView.m in Sources */,
 				20D75E2F15C0EC8B00CB225B /* ZNMapOverlayView.m in Sources */,
 				20D6E3D415C14391001B1B15 /* ZNTabBar.m in Sources */,
-				20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView2.m in Sources */,
+				20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView.m in Sources */,
 				20D6E3EC15C217E9001B1B15 /* ZNTimeMarkerView.m in Sources */,
-				2034EE9715C2A617002CE091 /* ZNTestScrollVC.m in Sources */,
+				20BE25A015C7D90800B3ABF1 /* ZNTimelineView.m in Sources */,
+				20BE25A615C8018400B3ABF1 /* ZNTimelineContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,11 +28,41 @@
         delegate = del;
         _resourcePath = resourcePath;
         
-        [self doLoad];
+        //[self doLoad];
         
     }
     return self;
 }
+
+- (void)loadLocal {
+    
+    NSLog(@"loading local:%@", self);
+    
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+    if (self.fetchedResultsController.fetchedObjects) {
+        [delegate fetchedResults:self.fetchedResultsController.fetchedObjects];
+    }
+}
+
+- (void)loadRemote {
+    
+    NSLog(@"loading remote:%@", self);
+    
+    [[RKObjectManager sharedManager] loadObjectsAtResourcePath:_resourcePath usingBlock:^(RKObjectLoader *loader) {
+        objectLoader = loader;
+        loader.additionalHTTPHeaders = [[ZNSettings shared] requestHeaders];
+        loader.delegate = self;
+    }];
+}
+
+- (NSArray*)localResults {
+    NSLog(@"getting local results for:%@", self);
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+    return self.fetchedResultsController.fetchedObjects;
+}
+
 
 - (void)doLoad {
     NSError *error = nil;
@@ -54,7 +84,7 @@
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
     
-    NSLog(@"loaded more");    
+    NSLog(@"loaded remote objects");    
     //NSError *error = nil;
     //[self.fetchedResultsController performFetch:&error];
     //[delegate fetchedResults:self.fetchedResultsController.fetchedObjects];
@@ -63,11 +93,12 @@
 
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    NSLog(@"error");
+    NSLog(@"failed to load remote objects");
     [delegate didFinishRemoteLoad:NO];
 }
 
 - (void)cancelLoad {
+    NSLog(@"cancelled load");
     [objectLoader.queue cancelRequestsWithDelegate:self];
     objectLoader = nil;
     [delegate didFinishRemoteLoad:NO];

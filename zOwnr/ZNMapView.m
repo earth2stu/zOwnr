@@ -16,6 +16,10 @@
 #import "ZNMenuItem.h"
 #import "Event.h"
 
+// settings
+#import "ZNSettings.h"
+#import "Zone.h"
+
 @interface ZNMapView() {
     id<MapViewDelegate> _delegate;
 }
@@ -156,8 +160,13 @@
     CLLocationCoordinate2D nwCoord = MKCoordinateForMapPoint(nwMapPoint);
     CLLocationCoordinate2D seCoord = MKCoordinateForMapPoint(seMapPoint);
     
-    [_delegate didScrollToRegion:nwCoord pointSE:seCoord];
-    [self updateData];
+    //[_delegate didScrollToRegion:nwCoord pointSE:seCoord];
+    
+    ZNSettings *s = [ZNSettings shared];
+    [s updateCurrentZone:nwCoord pointSE:seCoord fromTime:nil toTime:nil];
+    
+    
+    //[self updateData];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -311,6 +320,7 @@
     id object = notification.object;
     
     if ([object conformsToProtocol:@protocol(ZNMapView)]) {
+        NSLog(@"new selection is map compat");
         if ([object isKindOfClass:[Event class]]) {
             // zoom to this event
             NSLog(@"wow we selected an event");
@@ -325,8 +335,10 @@
             
             [mapView setVisibleMapRect:rect animated:YES];
             
-            [self showAnnotationsForObject:object];
+            
         }
+        
+        [self showAnnotationsForObject:object];
     }
     
 }

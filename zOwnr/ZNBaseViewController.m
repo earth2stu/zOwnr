@@ -255,7 +255,7 @@
     return mainView.mapView;
 }
 
-- (ZNTimelineScrollView*)timelineView {
+- (ZNTimelineView*)timelineView {
     return mainView.timelineView;
 }
 

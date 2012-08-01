@@ -41,5 +41,8 @@
 - (void)changeResourcePath:(NSString*)resourcePath;
 - (id)initWithResourcePath:(NSString*)resourcePath andDelegate:(id<ZNObjectLoaderDelegate>)del;
 - (void)cancelLoad;
+- (void)loadLocal;
+- (void)loadRemote;
+- (NSArray*)localResults;
 
 @end

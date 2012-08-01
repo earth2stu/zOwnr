@@ -2,50 +2,29 @@
 //  ZNTimelineView.h
 //  zOwnr
 //
-//  Created by Stuart Watkins on 22/07/12.
+//  Created by Stuart Watkins on 31/07/12.
 //  Copyright (c) 2012 Cytrasoft Pty Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "ZNTimelineBarView.h"
+#import "ZNMainBaseView.h"
+#import "ZNMenuView.h"
+#import "ZNTimelineScrollView.h"
 
-@protocol TimelineCell;
-@protocol TimelineRow;
+/// This allows objects to be set as the root object of the Timeline. They must provide the following data:
 
+@protocol ZNTimelineView <NSObject>
 
-
-@protocol TimelineDelegate <NSObject>
-
-- (void)selectRow:(id<TimelineRow>)row;
-- (void)selectCell:(id<TimelineCell>)cell;
-- (void)didScrollToTimespan;
-- (void)startUpdatingSize;
-- (void)didUpdateSize;
-
+- (NSArray*)rows; // each object must conform to ZNTimelineRowView
+- (NSDate*)startTime;
+- (NSDate*)endTime;
 
 @end
 
-@interface ZNTimelineView : UIView {
-    id<TimelineDelegate> delegate;
-    ZNTimelineBar *bar;
-    UIPinchGestureRecognizer *pinchRecognizer;
-    NSNumber *pixelsPerHour;
-    float totalHours;
-    
-    NSDate* fromTime;
-    NSDate* toTime;
-    
-    // initial frame width when scrolling begins
-    float initialSize;
+@interface ZNTimelineView : ZNMainBaseView <ZNMenuView,
+                                            ZNTimelineScrollDelegate> // has a menu
+{
+    ZNTimelineScrollView *timelineScrollView;
 }
-
-@property (nonatomic, retain) NSNumber *pixelsPerHour;
-@property (nonatomic, retain) NSDate *fromTime;
-@property (nonatomic, retain) NSDate *toTime;
-
-//- (id)initWithEvent:(Event*)theEvent frame:(CGRect)frame;
-- (void)didScroll:(UIScrollView*)scrollView;
-//- (void)setLocationFrames;
-- (id)initWithFrame:(CGRect)frame fromTime:(NSDate*)initialFromTime toTime:(NSDate*)initialToTime delegate:(id<TimelineDelegate>)delegate;
 
 @end

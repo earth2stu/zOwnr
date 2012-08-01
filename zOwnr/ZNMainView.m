@@ -7,6 +7,9 @@
 //
 
 #import "ZNMainView.h"
+#import "ZNSettings.h"
+#import "EventGroup.h"
+#import "Zone.h"
 
 @implementation ZNMainView
 
@@ -26,11 +29,7 @@
         mapView = [[ZNMapView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withDelegate:self];
         [self addSubview:mapView];
         
-        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateFormat = @"yyyyMMdd HH:mm";
         
-        NSDate *fromTime = [df dateFromString:@"20110910 12:00"];
-        NSDate *toTime = [df dateFromString:@"20110920 12:00"];
         
         
         //NSDate *fromTime = [NSDate dateWithTimeIntervalSinceNow:-(4 * 3600 * 24)];
@@ -40,8 +39,7 @@
         //timelineView = [[ZNTimelineScrollView alloc] initWithFrame:CGRectMake(0, 0, 435, 275) fromTime:fromTime toTime:toTime withDelegate:self];
         //[self addSubview:timelineView];
         
-        timelineView = [[ZNTimelineScrollView2 alloc] initWithFrame:CGRectMake(0, 0, 435, 275) withDelegate:self];
-        [timelineView setTimespanFrom:fromTime to:toTime];
+        timelineView = [[ZNTimelineView alloc] initWithFrame:CGRectMake(0, 0, 435, 275)];
         [self addSubview:timelineView];
         
         socialView = [[ZNSocialView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -52,6 +50,8 @@
         
         [delegate setCurrentMainView:mapView];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSetValidZone:) name:kZNChangeZoneKey object:nil];
+        
     }
     return self;
 }
@@ -59,6 +59,22 @@
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     [self setCurrentQuadrant:currentQuadrant];
+}
+
+#pragma mark Notifications
+
+- (void)didSetValidZone:(NSNotification*)notification {
+    Zone *z = (Zone*)notification.object;
+    ZNSettings *s = [ZNSettings shared];
+    if (s.currentSelection == nil || [s.currentSelection isKindOfClass:[EventGroup class]]) {
+        // we have no selection or we are already looking at an eventGroup
+        EventGroup *eg = [[EventGroup alloc] init];
+        eg.fromTime = z.fromTime;
+        eg.toTime = z.toTime;
+        eg.pointNW = z.pointNW;
+        eg.pointSE = z.pointSE;
+        s.currentSelection = eg;
+    }
 }
 
 #pragma mark MapViewDelegate

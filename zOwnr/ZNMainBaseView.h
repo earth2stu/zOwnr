@@ -19,5 +19,6 @@
 @interface ZNMainBaseView : UIView
 
 - (NSDictionary*)standardMenuGroups;
+- (void)setFinalFrame:(CGRect)frame;
 
 @end

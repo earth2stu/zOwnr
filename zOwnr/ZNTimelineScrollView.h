@@ -1,44 +1,79 @@
 //
-//  ZNTimelineScrollView.h
+//  ZNTimelineScrollView2.h
 //  zOwnr
 //
-//  Created by Stuart Watkins on 22/07/12.
+//  Created by Stuart Watkins on 27/07/12.
 //  Copyright (c) 2012 Cytrasoft Pty Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "ZNTimelineView.h"
+#import "ZNTimeMarkerView.h"
 #import "Zone.h"
 #import "ZNMenuView.h"
 #import "ZNMainBaseView.h"
+#import "ZNTimelineContentView.h"
 
-@protocol ZNTimelineViewOld <NSObject>
+static const float kZNMinTimeMarkerSize = 20.0f;
+static const float kZNRowHeight = 45.0f;
 
-- (NSArray*)rows;
-- (NSDate*)startTime;
-- (NSDate*)endTime;
+@protocol ZNTimelineView;
 
-@end
-
-@protocol TimelineScrollDelegate <NSObject>
+@protocol ZNTimelineScrollDelegate <NSObject>
 
 - (void)didScrollToTimespan:(NSDate*)fromTime toTime:(NSDate *)toTime;
-- (Zone*)getCurrentZone;
+
 
 @end
 
-@interface ZNTimelineScrollView : ZNMainBaseView <UIScrollViewDelegate, TimelineDelegate, ZNMenuView> {
-    UIScrollView *timelineScrollView;
-    ZNTimelineView *t;
-    id<ZNTimelineViewOld> timelineObject;
+@interface ZNTimelineScrollView : UIScrollView <UIScrollViewDelegate> {
     
+    // markers
+    NSMutableArray *timeMarkers;
+    float currentMarkerWidth;
+    kZNTimelineMarkerMode currentMarkerMode;
     
+    float minMarkerWidth;
+    int maxMarkers;
     
-    float timelineCentre;
+    //float maxMarkerWidth;
+    //UIEdgeInsets responseInsets;
+    
+    // main content view
+    ZNTimelineContentView *contentView;
+    
+    // pinch
+    UIPinchGestureRecognizer *pinchRecognizer;
+    float initialPinchMarkerSize;
+    float initialPinchScaleFactor;
+    BOOL isZooming;
+    
+    // time
+    NSDate *currentZeroTime;
+    
+    // labels
+    UILabel *leftStaticTime;
+    UILabel *rightStaticTime;
+    
+    // delegate
+    id<ZNTimelineScrollDelegate> scrollDelegate;
+    
+    // currently held root object
+    id<ZNTimelineView> currentObject;
+    
+    BOOL isUpdatingFromUserGesture;
+    
 }
 
-- (id)initWithDelegate:(id<TimelineScrollDelegate>)delegate;
-- (id)initWithFrame:(CGRect)frame fromTime:(NSDate*)fromTime toTime:(NSDate*)toTime withDelegate:(id<TimelineScrollDelegate>)delegate;
-- (void)setTimelineObject:(id<ZNTimelineViewOld>)timelineObj;
+@property (assign) UIEdgeInsets responseInsets;
+@property (nonatomic, retain) NSDate *minTime;
+@property (nonatomic, retain) NSDate *maxTime;
+@property (nonatomic, retain) NSDate *startTime;
+@property (nonatomic, retain) NSDate *endTime;
+
+- (id)initWithFrame:(CGRect)frame withDelegate:(id<ZNTimelineScrollDelegate>)del;
+- (void)setTimespanFrom:(NSDate*)fromTime to:(NSDate*)toTime;
+- (void)setCurrentObject:(id<ZNTimelineView>)object;
+
+//- (id)initWithSuperFrame:(CGRect)superFrame;
 
 @end
