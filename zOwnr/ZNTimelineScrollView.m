@@ -88,12 +88,12 @@
     return self;
 }
 
-#pragma ZNTimelineView
+#pragma mark ZNTimelineView
 
 - (void)setCurrentObject:(id<ZNTimelineView>)object {
     
-    if ([object isEqual:currentObject]) {
-        // we're setting to the same object we're already handling
+    if ([object isEqual:currentObject] || ([currentObject startTime] == [object startTime] && [currentObject endTime] == [object endTime])) {
+        // we're setting to the same object or timespan we're already handling
         return;
     }
     

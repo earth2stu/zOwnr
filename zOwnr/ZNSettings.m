@@ -8,6 +8,7 @@
 
 #import "ZNSettings.h"
 #import "ZownrService.h"
+#import "EventGroup.h"
 
 @implementation ZNSettings
 
@@ -76,8 +77,20 @@
     _currentSelection = currentSelection;
     //[delegate setCurrentSelection:currentSelection];
     
+    /*
+    if (_currentSelection == nil) {
+        // set to a new event group
+        EventGroup *eg = [[EventGroup alloc] init];
+        eg.fromTime = _currentZone.fromTime;
+        eg.toTime = _currentZone.toTime;
+        eg.pointNW = _currentZone.pointNW;
+        eg.pointSE = _currentZone.pointSE;
+        _currentSelection = eg;
+    }
+    */
+    
     NSLog(@"changed selection notification");
-    [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeSelectionKey object:currentSelection];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeSelectionKey object:_currentSelection];
     
     if ([currentSelection conformsToProtocol:@protocol(ZNLoadable)]) {
         [[ZownrService sharedInstance] loadObject:(id<ZNLoadable>)currentSelection];

@@ -61,8 +61,13 @@
 
 - (void)showAnnotationsForObject:(id<ZNMapView>)object {
     
-    NSArray *annotations = [object annotations];
+    // remove all except the ones we are re-adding
+    NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithArray:[mapView annotations]];
+    [annotationsToRemove removeObjectsInArray:[object annotations]];
+    [mapView removeAnnotations:annotationsToRemove];
     
+    // re-add all of them
+    NSArray *annotations = [object annotations];
     for (id<MKAnnotation> ann in annotations) {
         [mapView addAnnotation:ann];
     }
@@ -107,11 +112,11 @@
         }
         */
         
-        if (mapView.userLocation.location.horizontalAccuracy <= 50.0f) {
+        //if (mapView.userLocation.location.horizontalAccuracy <= 50.0f) {
             isLocatingUser = NO;
             [mapView.userLocation removeObserver:self forKeyPath:@"location"];
             
-        }
+        //}
         
         //if (!isRegionZoomed) {
         MKCoordinateRegion region;
