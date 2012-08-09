@@ -12,12 +12,14 @@
 #import "ZNSocialLoginView.h"
 #import "FBConnect.h"
 #import <RestKit/RestKit.h>
+#import "ZNTabBarView.h"
 
 
 
-
-@interface ZNSocialView : ZNMainBaseView <ZNMenuView, ZNSocialLoginDelegate, FBSessionDelegate, RKObjectLoaderDelegate> {
+@interface ZNSocialView : ZNTabBarView <ZNMenuView, ZNSocialLoginDelegate, FBSessionDelegate, RKObjectLoaderDelegate> {
     Facebook *facebook;
+    ZNSocialLoginView *loginView;
+    
 }
 
 - (void)showLogin;

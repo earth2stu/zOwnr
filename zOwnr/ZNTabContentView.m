@@ -1,14 +1,14 @@
 //
-//  ZNTabBar.m
+//  ZNTabView.m
 //  zOwnr
 //
-//  Created by Stuart Watkins on 26/07/12.
+//  Created by Stuart Watkins on 9/08/12.
 //  Copyright (c) 2012 Cytrasoft Pty Ltd. All rights reserved.
 //
 
-#import "ZNTabBar.h"
+#import "ZNTabContentView.h"
 
-@implementation ZNTabBar
+@implementation ZNTabContentView
 
 - (id)initWithFrame:(CGRect)frame
 {

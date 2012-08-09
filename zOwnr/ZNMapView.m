@@ -61,16 +61,21 @@
 
 - (void)showAnnotationsForObject:(id<ZNMapView>)object {
     
+    NSArray *objectAnnotations = [object annotations];
+    
     // remove all except the ones we are re-adding
     NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithArray:[mapView annotations]];
-    [annotationsToRemove removeObjectsInArray:[object annotations]];
+    id userAnnotation = mapView.userLocation;
+    [annotationsToRemove removeObjectsInArray:objectAnnotations];
+    [annotationsToRemove removeObject:userAnnotation];
     [mapView removeAnnotations:annotationsToRemove];
     
     // re-add all of them
-    NSArray *annotations = [object annotations];
+    NSArray *annotations = objectAnnotations;
     for (id<MKAnnotation> ann in annotations) {
         [mapView addAnnotation:ann];
     }
+    
 }
 
 
@@ -159,6 +164,8 @@
 
 - (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated:(BOOL)animated {
     
+    NSLog(@"region did change");
+    
     MKMapRect mRect = mapView.visibleMapRect;
     MKMapPoint nwMapPoint = MKMapPointMake(mRect.origin.x, mRect.origin.y);
     MKMapPoint seMapPoint = MKMapPointMake(MKMapRectGetMaxX(mRect), MKMapRectGetMaxY(mRect));
@@ -168,8 +175,9 @@
     //[_delegate didScrollToRegion:nwCoord pointSE:seCoord];
     
     ZNSettings *s = [ZNSettings shared];
-    [s updateCurrentZone:nwCoord pointSE:seCoord fromTime:nil toTime:nil];
+    NSLog(@"map is updating current zone");
     
+    [s updateCurrentZoneFromPointNW:nwCoord toPoint:seCoord];
     
     //[self updateData];
 }
@@ -200,6 +208,7 @@
     }
 }
 
+/*
 #pragma mark DataUpdates
 
 - (void)didFinishRemoteLoad:(BOOL)success {
@@ -208,6 +217,7 @@
 
 - (void)fetchedResults:(NSArray *)results {
     NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithArray:[mapView annotations]];
+    id userAnnotation=mapView.userLocation;
     for (id o in results) {
         /*
         if ([o conformsToProtocol:@protocol(MKOverlay)]) {
@@ -216,7 +226,7 @@
             [mapView addOverlay:o];
             
         } else 
-        */
+        *
         
         if ([o conformsToProtocol:@protocol(MKAnnotation)]) {
             //
@@ -226,6 +236,9 @@
         }
     }
     [mapView removeAnnotations:annotationsToRemove];
+    // Add the current user location annotation again.
+    if(userAnnotation!=nil)
+        [mapView addAnnotation:userAnnotation];
 }
 
 - (void)fetchedResultsChangeInsert:(id)object {
@@ -287,9 +300,10 @@
     
     
     NSLog(@"got %@", objects);
-    */
+    *
     
 }
+*/
 
 #pragma mark MenuView
 

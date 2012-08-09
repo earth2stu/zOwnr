@@ -92,12 +92,16 @@
 
 - (void)setCurrentObject:(id<ZNTimelineView>)object {
     
+    NSLog(@"setting current timeline object to:%@", object);
+    
+    currentObject = object;
+    
     if ([object isEqual:currentObject] || ([currentObject startTime] == [object startTime] && [currentObject endTime] == [object endTime])) {
         // we're setting to the same object or timespan we're already handling
+        NSLog(@"not adjusting the timeline cos we don't need to");
         return;
     }
     
-    currentObject = object;
     [self setTimespanFrom:[object startTime] to:[object endTime]];
     
     [contentView setFrame:CGRectMake(contentView.frame.origin.x, contentView.frame.origin.y, contentView.frame.size.width, [[object rows] count] * kZNRowHeight)];
@@ -134,6 +138,8 @@
     int numShowing = lroundf(self.frame.size.width / currentMarkerWidth);
     numShowing = self.frame.size.width / currentMarkerWidth;
     
+    NSLog(@"num markers = %i at width %f in frame width %f",numShowing, currentMarkerWidth, self.frame.size.width);
+    
     ZNTimeMarkerView *startView = [timeMarkers objectAtIndex:1];
     ZNTimeMarkerView *endView = [timeMarkers objectAtIndex:numShowing + 1];
     
@@ -141,10 +147,18 @@
     self.startTime = startView.currentTime;
     self.endTime = endView.currentTime;
     
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyyMMdd HH:mm";
+    df.timeZone = [NSTimeZone defaultTimeZone];
+    
+    NSLog(@"setting start time:%@ and end time:%@", [df stringFromDate:self.startTime], [df stringFromDate:self.endTime]);
+    
     [scrollDelegate didScrollToTimespan:startView.currentTime toTime:endView.currentTime];
 }
 
 #pragma mark Layout Adjustments
+
+
 
 - (void)setupMarkersForCurrentPeriod {
     
@@ -156,16 +170,19 @@
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"yyyyMMdd 00:00";
+
     
+    // round to include the whole of start and finish days
     NSDate *fromDay = [df dateFromString:[df stringFromDate:self.startTime]];
     NSDate *toDay = [df dateFromString:[df stringFromDate:self.endTime]];
     toDay = [toDay dateByAddingTimeInterval:3600 * 24];
     
-    
+    // work out how many days this is once rounded
     NSTimeInterval totalDays = [toDay timeIntervalSinceDate:fromDay] / (3600 * 24);
     
     if (totalDays > maxMarkers) {
         // we have more days than we can show, just show the maximum
+        // day mode
         currentMarkerMode = kZNTimelineMarkerModeDay;
         currentMarkerWidth = minMarkerWidth;
     } else {
@@ -176,9 +193,12 @@
             currentMarkerWidth = self.frame.size.width / (totalDays * 2);
         } else {
             if (totalDays <= maxMarkers / 4) {
+                // we can fit into quarter days
                 currentMarkerMode = kZNTimelineMarkerModeQuarterDay;
                 currentMarkerWidth = self.frame.size.width / (totalDays * 4);
             } else {
+                // not small enough to show as quarter days
+                // just use days instead
                 currentMarkerMode = kZNTimelineMarkerModeDay;
                 currentMarkerWidth = self.frame.size.width / totalDays;
             }
@@ -296,7 +316,9 @@
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     
-    if (frame.size.height <= kMainEdgeViewHeight || frame.size.width <= kMainEdgeViewHeight) {
+    //return;
+    
+    if (frame.size.height < kMainEdgeViewHeight || frame.size.width < kMainEdgeViewHeight) {
         return;
     }
     

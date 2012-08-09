@@ -141,6 +141,13 @@
         }
         
     } completion:^(BOOL finished) {
+        
+        [mapView setFinalFrame:mapView.frame];
+        [timelineView setFinalFrame:timelineView.frame];
+        [socialView setFinalFrame:socialView.frame];
+        [mediaView setFinalFrame:mediaView.frame];
+        
+        
         switch (quadrant) {
             case kQuadrantCornerBottomRight:
                 // main map view

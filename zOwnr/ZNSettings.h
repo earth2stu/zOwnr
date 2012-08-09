@@ -35,6 +35,10 @@
 - (BOOL)isCurrentUser;
 - (BOOL)isLoggedIn;
 - (NSDictionary*)requestHeaders;
-- (void)updateCurrentZone:(CLLocationCoordinate2D)pointNW pointSE:(CLLocationCoordinate2D)pointSE fromTime:(NSDate*)fromTime toTime:(NSDate*)toTime;
+
+- (void)updateCurrentZoneFromTime:(NSDate*)fromTime toTime:(NSDate*)toTime;
+- (void)updateCurrentZoneFromPointNW:(CLLocationCoordinate2D)pointNW toPoint:(CLLocationCoordinate2D)pointSE;
+
+//- (void)updateCurrentZone:(CLLocationCoordinate2D)pointNW pointSE:(CLLocationCoordinate2D)pointSE fromTime:(NSDate*)fromTime toTime:(NSDate*)toTime;
 
 @end

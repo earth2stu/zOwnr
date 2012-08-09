@@ -143,7 +143,7 @@
 		20C19DA31538341D006B757F /* UserMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19DA21538341D006B757F /* UserMedia.m */; };
 		20C19DA615383A92006B757F /* EventItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20C19DA515383A92006B757F /* EventItemView.m */; };
 		20C19DA815383AAD006B757F /* EventItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20C19DA715383AAD006B757F /* EventItemView.xib */; };
-		20D6E3D415C14391001B1B15 /* ZNTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3D315C14391001B1B15 /* ZNTabBar.m */; };
+		20D6E3D415C14391001B1B15 /* ZNTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3D315C14391001B1B15 /* ZNTabBarView.m */; };
 		20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView.m */; };
 		20D6E3EC15C217E9001B1B15 /* ZNTimeMarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D6E3EB15C217E8001B1B15 /* ZNTimeMarkerView.m */; };
 		20D75DE215BFAC3100CB225B /* ZNSocialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75DE115BFAC3100CB225B /* ZNSocialView.m */; };
@@ -158,6 +158,7 @@
 		20D75E2F15C0EC8B00CB225B /* ZNMapOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D75E2E15C0EC8B00CB225B /* ZNMapOverlayView.m */; };
 		20DC14281564F864009C213C /* ZNVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DC14271564F864009C213C /* ZNVideoController.m */; };
 		20DC142A1564F8B0009C213C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DC14291564F8B0009C213C /* AVFoundation.framework */; };
+		20EC450815D337A300A1A407 /* ZNTabContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20EC450715D337A300A1A407 /* ZNTabContentView.m */; };
 		20F7DFB71535829700CD391B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB61535829700CD391B /* UIKit.framework */; };
 		20F7DFB91535829700CD391B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFB81535829700CD391B /* Foundation.framework */; };
 		20F7DFBB1535829700CD391B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20F7DFBA1535829700CD391B /* CoreGraphics.framework */; };
@@ -444,8 +445,8 @@
 		20C19DA415383A92006B757F /* EventItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventItemView.h; sourceTree = "<group>"; };
 		20C19DA515383A92006B757F /* EventItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventItemView.m; sourceTree = "<group>"; };
 		20C19DA715383AAD006B757F /* EventItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventItemView.xib; sourceTree = "<group>"; };
-		20D6E3D215C14391001B1B15 /* ZNTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTabBar.h; sourceTree = "<group>"; };
-		20D6E3D315C14391001B1B15 /* ZNTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTabBar.m; sourceTree = "<group>"; };
+		20D6E3D215C14391001B1B15 /* ZNTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTabBarView.h; sourceTree = "<group>"; };
+		20D6E3D315C14391001B1B15 /* ZNTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTabBarView.m; sourceTree = "<group>"; };
 		20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimelineScrollView.h; sourceTree = "<group>"; };
 		20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTimelineScrollView.m; sourceTree = "<group>"; };
 		20D6E3EA15C217E8001B1B15 /* ZNTimeMarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTimeMarkerView.h; sourceTree = "<group>"; };
@@ -470,6 +471,8 @@
 		20DC14261564F864009C213C /* ZNVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNVideoController.h; sourceTree = "<group>"; };
 		20DC14271564F864009C213C /* ZNVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNVideoController.m; sourceTree = "<group>"; };
 		20DC14291564F8B0009C213C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		20EC450615D337A300A1A407 /* ZNTabContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZNTabContentView.h; sourceTree = "<group>"; };
+		20EC450715D337A300A1A407 /* ZNTabContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZNTabContentView.m; sourceTree = "<group>"; };
 		20F7DFB21535829700CD391B /* zOwnr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zOwnr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F7DFB61535829700CD391B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		20F7DFB81535829700CD391B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -732,11 +735,11 @@
 		2037717E15BD1A71004C1E6D /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				20D6E3D115C1435E001B1B15 /* TabBar */,
 				2037718415BD1B3E004C1E6D /* ZNMainView.h */,
 				2037718515BD1B3E004C1E6D /* ZNMainView.m */,
 				20D75DF815C015BB00CB225B /* ZNMainBaseView.h */,
 				20D75DF915C015BE00CB225B /* ZNMainBaseView.m */,
+				20D6E3D115C1435E001B1B15 /* TabBar */,
 				2037718215BD1AFA004C1E6D /* Media */,
 				2037718115BD1AEE004C1E6D /* Social */,
 				20B6706A153639A600135C4B /* Timeline */,
@@ -997,7 +1000,7 @@
 			children = (
 				20BE259E15C7D90500B3ABF1 /* ZNTimelineView.h */,
 				20BE259F15C7D90700B3ABF1 /* ZNTimelineView.m */,
-				20BE25A215C7D92800B3ABF1 /* ScrollView */,
+				20BE25A215C7D92800B3ABF1 /* TimelineScrollView */,
 				20BE25A315C8014D00B3ABF1 /* TimelineContentView */,
 				20BE25A115C7D91A00B3ABF1 /* TimeMarker */,
 				2037713815BC64B0004C1E6D /* TimelineCell */,
@@ -1039,13 +1042,13 @@
 			name = TimeMarker;
 			sourceTree = "<group>";
 		};
-		20BE25A215C7D92800B3ABF1 /* ScrollView */ = {
+		20BE25A215C7D92800B3ABF1 /* TimelineScrollView */ = {
 			isa = PBXGroup;
 			children = (
 				20D6E3E715C2179E001B1B15 /* ZNTimelineScrollView.h */,
 				20D6E3E815C2179E001B1B15 /* ZNTimelineScrollView.m */,
 			);
-			name = ScrollView;
+			name = TimelineScrollView;
 			sourceTree = "<group>";
 		};
 		20BE25A315C8014D00B3ABF1 /* TimelineContentView */ = {
@@ -1060,8 +1063,10 @@
 		20D6E3D115C1435E001B1B15 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				20D6E3D215C14391001B1B15 /* ZNTabBar.h */,
-				20D6E3D315C14391001B1B15 /* ZNTabBar.m */,
+				20D6E3D215C14391001B1B15 /* ZNTabBarView.h */,
+				20D6E3D315C14391001B1B15 /* ZNTabBarView.m */,
+				20EC450615D337A300A1A407 /* ZNTabContentView.h */,
+				20EC450715D337A300A1A407 /* ZNTabContentView.m */,
 			);
 			name = TabBar;
 			sourceTree = "<group>";
@@ -1563,11 +1568,12 @@
 				20D75DFA15C015BF00CB225B /* ZNMainBaseView.m in Sources */,
 				20D75DFD15C02D4900CB225B /* ZNSocialLoginView.m in Sources */,
 				20D75E2F15C0EC8B00CB225B /* ZNMapOverlayView.m in Sources */,
-				20D6E3D415C14391001B1B15 /* ZNTabBar.m in Sources */,
+				20D6E3D415C14391001B1B15 /* ZNTabBarView.m in Sources */,
 				20D6E3E915C2179E001B1B15 /* ZNTimelineScrollView.m in Sources */,
 				20D6E3EC15C217E9001B1B15 /* ZNTimeMarkerView.m in Sources */,
 				20BE25A015C7D90800B3ABF1 /* ZNTimelineView.m in Sources */,
 				20BE25A615C8018400B3ABF1 /* ZNTimelineContentView.m in Sources */,
+				20EC450815D337A300A1A407 /* ZNTabContentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

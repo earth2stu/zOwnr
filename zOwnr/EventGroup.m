@@ -56,6 +56,8 @@
     
     NSString *resourcePath = [NSString stringWithFormat:@"/events?longitudeNW=%f&latitudeNW=%f&longitudeSE=%f&latitudeSE=%f&fromTime=%@&toTime=%@", self.pointNW.longitude, self.pointNW.latitude, self.pointSE.longitude, self.pointSE.latitude, fromString, toString];
     
+    NSLog(@"event group resource path is:%@", resourcePath);
+    
     return [[ZNObjectLoader alloc] initWithResourcePath:resourcePath andDelegate:delegate];
     
 }

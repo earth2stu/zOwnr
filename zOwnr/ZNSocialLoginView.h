@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZNTabContentView.h"
 
 @protocol ZNSocialLoginDelegate <NSObject>
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface ZNSocialLoginView : UIView <UITableViewDelegate, UITableViewDataSource> {
+@interface ZNSocialLoginView : ZNTabContentView <UITableViewDelegate, UITableViewDataSource> {
     UITableView *loginTableView;
     id<ZNSocialLoginDelegate> delegate;
 }

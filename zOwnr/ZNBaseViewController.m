@@ -103,11 +103,13 @@
         [menuView setFrame:CGRectMake(0, 0, 320, 480)];
         //[logoView setCurrentCorner:[self cornerToQuadrant:currentQuadrant]];
     }
+    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     
     [logoView setCurrentCorner:[self cornerToQuadrant:currentQuadrant]];
+    //[mainView setCurrentQuadrant:currentQuadrant];
     
    // NSLog(@"%@", [NSString stringWithFormat:@"Rotation: %s [w=%f, h=%f]",  
    //               UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? "Portrait" : "Landscape",

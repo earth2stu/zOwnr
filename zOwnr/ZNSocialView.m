@@ -26,11 +26,26 @@
         self.backgroundColor = [UIColor yellowColor];
         
         ZNAppDelegate *app = (ZNAppDelegate*)[[UIApplication sharedApplication] delegate];
-        app.facebook = [[Facebook alloc] initWithAppId:@"232014290188966" andDelegate:self];
+        app.facebook = [[Facebook alloc] initWithAppId:kZNFacebookAppId andDelegate:self];
         facebook = app.facebook;
         
     }
     return self;
+}
+
+/*
+- (NSDictionary*)defaultTabClasses {
+    NSMutableDictionary *tabs = [NSMutableDictionary dictionary];
+    [tabs setObject:[ZNSocialLoginView class] forKey:@"Me"];
+    return tabs;
+}
+*/
+
+- (NSMutableDictionary*)defaultTabContentViews {
+    NSMutableDictionary *tabContentViews = [NSMutableDictionary dictionary];
+    loginView = [[ZNSocialLoginView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) withDelegate:self];
+    [tabContentViews setObject:loginView forKey:@"Me"];
+    return tabContentViews;
 }
 
 /*
@@ -103,6 +118,26 @@
         loader.delegate = self;
     }];
         
+}
+
+- (void)fbDidLogout {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"FBAccessTokenKey"];
+    [defaults removeObjectForKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    
+    [[ZNSettings shared] setCurrentUser:nil];
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled {
+    // todo:show an alert about the failure
+}
+
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
+    [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
 }
 
 #pragma mark ObjectLoaderDelegate

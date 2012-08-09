@@ -92,9 +92,9 @@
     NSLog(@"changed selection notification");
     [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeSelectionKey object:_currentSelection];
     
-    if ([currentSelection conformsToProtocol:@protocol(ZNLoadable)]) {
-        [[ZownrService sharedInstance] loadObject:(id<ZNLoadable>)currentSelection];
-    }
+    //if ([currentSelection conformsToProtocol:@protocol(ZNLoadable)]) {
+    //    [[ZownrService sharedInstance] loadObject:(id<ZNLoadable>)currentSelection];
+    //}
  
 }
 
@@ -105,24 +105,47 @@
     return _currentZone;
 }
 
-- (void)updateCurrentZone:(CLLocationCoordinate2D)pointNW pointSE:(CLLocationCoordinate2D)pointSE fromTime:(NSDate *)fromTime toTime:(NSDate *)toTime {
-    if (CLLocationCoordinate2DIsValid(pointNW) && CLLocationCoordinate2DIsValid(pointSE)) {
-        self.currentZone.pointNW = pointNW;
-        self.currentZone.pointSE = pointSE;
-    }
+- (void)updateCurrentZoneFromTime:(NSDate*)fromTime toTime:(NSDate*)toTime {
     if (fromTime && toTime) {
-        if (fromTime < toTime) {
+        if ([fromTime compare:toTime] == NSOrderedAscending) {
             self.currentZone.fromTime = fromTime;
             self.currentZone.toTime = toTime;
         }
+    } else {
+        NSLog(@"times not valid");
     }
-    
+    [self notifyZoneChangeIfValid];
+}
+
+- (void)updateCurrentZoneFromPointNW:(CLLocationCoordinate2D)pointNW toPoint:(CLLocationCoordinate2D)pointSE {
+    NSLog(@"update current zone");
+    if (CLLocationCoordinate2DIsValid(pointNW) && CLLocationCoordinate2DIsValid(pointSE)) {
+        NSLog(@"coordinate is valid");
+        self.currentZone.pointNW = pointNW;
+        self.currentZone.pointSE = pointSE;
+    } else {
+        NSLog(@"coordinate not valid");
+    }
+    [self notifyZoneChangeIfValid];
+}
+
+- (void)notifyZoneChangeIfValid {
     if (CLLocationCoordinate2DIsValid(self.currentZone.pointNW) && CLLocationCoordinate2DIsValid(self.currentZone.pointSE) && self.currentZone.fromTime && self.currentZone.toTime) {
         NSLog(@"changed zone notification");
         [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeZoneKey object:self.currentZone];
+    } else {
+        NSLog(@"zone set not valid");
     }
+}
+
+/*
+- (void)updateCurrentZone:(CLLocationCoordinate2D)pointNW pointSE:(CLLocationCoordinate2D)pointSE fromTime:(NSDate *)fromTime toTime:(NSDate *)toTime {
+    
+        
+    
     
 }
+*/
 
 - (NSDictionary*)requestHeaders {
     NSMutableDictionary *headers = [NSMutableDictionary dictionary];

@@ -58,6 +58,8 @@ static NSString *kZNLoadingSelectionKey = @"ZNLoadingSelection";
 static NSString *kZNLoadedSelectionKey = @"ZNLoadedSelection";
 static NSString *kZNChangeZoneKey = @"ZNChangeZone";
 
+static NSString *kZNFacebookAppId = @"232014290188966";
+
 typedef struct {
     GLKVector3      vertex;
     GLKVector3      normal;

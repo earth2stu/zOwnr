@@ -21,9 +21,10 @@
         
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         df.dateFormat = @"yyyyMMdd HH:mm";
+        df.timeZone = [NSTimeZone localTimeZone];
         
-        NSDate *fromTime = [df dateFromString:@"20110910 12:00"];
-        NSDate *toTime = [df dateFromString:@"20110920 12:00"];
+        NSDate *fromTime = [df dateFromString:@"20110910 00:00"];
+        NSDate *toTime = [df dateFromString:@"20110920 00:00"];
         
         timelineScrollView = [[ZNTimelineScrollView alloc] initWithFrame:frame withDelegate:self];
         [timelineScrollView setTimespanFrom:fromTime to:toTime];
@@ -43,6 +44,7 @@
     [timelineScrollView setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 }
 
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -56,7 +58,9 @@
 
 - (void)didScrollToTimespan:(NSDate *)fromTime toTime:(NSDate *)toTime {
     ZNSettings *s = [ZNSettings shared];
-    [s updateCurrentZone:s.currentZone.pointNW pointSE:s.currentZone.pointSE fromTime:fromTime toTime:toTime];
+    NSLog(@"did scroll to timespan. timeline is updating zone with fromTime:%@ and toTime:%@", fromTime, toTime);
+    //[s updateCurrentZone:s.currentZone.pointNW pointSE:s.currentZone.pointSE fromTime:fromTime toTime:toTime];
+    [s updateCurrentZoneFromTime:fromTime toTime:toTime];
 }
 
 #pragma mark MainBaseView
@@ -107,9 +111,9 @@
         
         [timelineScrollView setCurrentObject:object];
         
-        //id<ZNTimelineView> o = (id<ZNTimelineView>)object;
+        id<ZNTimelineView> o = (id<ZNTimelineView>)object;
         
-        //[timelineScrollView setTimespanFrom:[o startTime] to:[o endTime]];
+        [timelineScrollView setTimespanFrom:[o startTime] to:[o endTime]];
     }
     
 }
