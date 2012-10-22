@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class ZNTimelineCellView;
+
+@protocol ZNTimelineCellViewDelegate <NSObject>
+
+- (CGRect)frameForCell:(ZNTimelineCellView*)cell;
+
+@end
+
 @protocol ZNTimelineCellView <NSObject>
 
 - (UIView*)viewForCell;
@@ -17,6 +25,14 @@
 
 @end
 
-@interface ZNTimelineCellView : UIView
+
+@interface ZNTimelineCellView : UIView {
+    id<ZNTimelineCellView> cell;
+}
+
+@property (nonatomic, weak) id<ZNTimelineCellView> cell;
+
+- (id)initWithCell:(id<ZNTimelineCellView>)cellObject delegate:(id<ZNTimelineCellViewDelegate>)delegate;
+- (void)updateLayout;
 
 @end

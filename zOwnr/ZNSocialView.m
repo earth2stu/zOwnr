@@ -33,6 +33,10 @@
     return self;
 }
 
+- (void)setFinalFrame:(CGRect)frame {
+    
+}
+
 /*
 - (NSDictionary*)defaultTabClasses {
     NSMutableDictionary *tabs = [NSMutableDictionary dictionary];

@@ -7,7 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZNTimelineRowView.h"
 
-@interface ZNTimelineContentView : UIView
+@protocol ZNTimelineView;
+
+@protocol ZNTimelineContentDelegate <NSObject>
+
+- (float)xOffsetForTime:(NSDate*)time;
+
+@end
+
+@interface ZNTimelineContentView : UIView <ZNTimelineRowViewDelegate> {
+    NSMutableArray *timelineRows;
+}
+
+@property (nonatomic, strong) NSMutableArray *timelineRows;
+@property (nonatomic, weak) id<ZNTimelineView> currentObject;
+
+- (id)initWithFrame:(CGRect)frame delegate:(id<ZNTimelineContentDelegate>)delegate;
+- (void)updateLayout;
+//- (void)setCurrentObject:(id<ZNTimelineView>)object;
 
 @end

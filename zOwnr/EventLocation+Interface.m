@@ -10,7 +10,19 @@
 
 @implementation EventLocation (Timeline)
 
+#pragma mark TimelineRowView Protocol
 
+- (NSArray*)cells {
+    return [self.eventItems allObjects];
+}
+
+- (NSDate*)startTime {
+    
+}
+
+- (NSDate*)endTime {
+    
+}
 
 #pragma mark PinView Protocol
 

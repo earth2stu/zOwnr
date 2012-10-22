@@ -33,7 +33,9 @@
 }
 
 - (NSArray*)rows {
-    return events;
+    ZNObjectLoader *loader = [self objectLoaderWithDelegate:nil];
+    NSArray *localResults = [loader localResults];
+    return localResults;
 }
 
 #pragma mark ZNMapViewDelegate

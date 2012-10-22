@@ -49,11 +49,13 @@
     return self;
 }
 
+/*
 - (void)setNewIndex:(int)index {
     currentIndex = currentIndex + index;
     //indexLabel.text = [NSString stringWithFormat:@"%i", currentIndex];
     label.text = [self labelForCurrentTime];
 }
+*/
 
 - (void)setMarkerMode:(kZNTimelineMarkerMode)mode {
     currentMode = mode;

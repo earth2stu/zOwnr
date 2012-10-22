@@ -7,8 +7,18 @@
 //
 
 #import "ZNTimelineRowView.h"
+#import "ZNTimelineCellView.h"
+
+@interface ZNTimelineRowView() {
+    id<ZNTimelineRowViewDelegate> _delegate;
+}
+
+@end
 
 @implementation ZNTimelineRowView
+
+@synthesize index;
+@synthesize row = _row;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -17,6 +27,38 @@
         // Initialization code
     }
     return self;
+}
+
+- (id)initWithRow:(id<ZNTimelineRowView>)rowObject delegate:(id<ZNTimelineRowViewDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        _delegate = delegate;
+        _row = rowObject;
+        
+        //for (UIView *subView in self.subviews) {
+        //    [subView removeFromSuperview];
+        //}
+        for (id<ZNTimelineCellView> cell in _row.cells) {
+            ZNTimelineCellView *cellView = [[ZNTimelineCellView alloc] initWithCell:cell delegate:self];
+            [self addSubview:cellView];
+        }
+        
+    }
+    return self;
+}
+
+- (void)updateLayout {
+
+    [self.subviews makeObjectsPerformSelector:@selector(updateLayout)];
+}
+
+
+#pragma mark CellViewDelegate
+
+
+
+- (CGRect)frameForCell:(ZNTimelineCellView*)cell {
+    return [_delegate frameForCell:cell];
 }
 
 /*

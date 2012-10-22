@@ -50,7 +50,7 @@
         
         [delegate setCurrentMainView:mapView];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSetValidZone:) name:kZNChangeZoneKey object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSetValidZone:) name:kZNChangeZoneKey object:nil];
         
     }
     return self;

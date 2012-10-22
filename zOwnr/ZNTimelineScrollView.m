@@ -79,7 +79,7 @@
         
         [self setMarkersToCurrentWidth];
         
-        contentView = [[ZNTimelineContentView alloc] init];
+        contentView = [[ZNTimelineContentView alloc] initWithFrame:CGRectMake(0, 0, 10, 10) delegate:self];
         [self addSubview:contentView];
         
         
@@ -94,7 +94,6 @@
     
     NSLog(@"setting current timeline object to:%@", object);
     
-    currentObject = object;
     
     if ([object isEqual:currentObject] || ([currentObject startTime] == [object startTime] && [currentObject endTime] == [object endTime])) {
         // we're setting to the same object or timespan we're already handling
@@ -102,9 +101,16 @@
         return;
     }
     
+    currentObject = object;
+    
+    
     [self setTimespanFrom:[object startTime] to:[object endTime]];
     
     [contentView setFrame:CGRectMake(contentView.frame.origin.x, contentView.frame.origin.y, contentView.frame.size.width, [[object rows] count] * kZNRowHeight)];
+    
+    [contentView setCurrentObject:object];
+    
+    
     
     self.contentSize = CGSizeMake(self.contentSize.width, contentView.frame.size.height + kMainEdgeViewHeight);
     
@@ -228,10 +234,11 @@
     
     currentMarkerWidth = self.frame.size.width / numShowing;
     
-    // only deal with 2 more than we need
+    // set the content size to contain number of markers showing + 1 on either side
     self.contentSize = CGSizeMake((numShowing + 2) * currentMarkerWidth, self.frame.size.height);
     
-    [contentView setFrame:CGRectMake(0, 50, self.contentSize.width, 0)];
+    // set the content view for rows to be the size of the markers including the one on either side
+    [contentView setFrame:CGRectMake(0, 50, self.contentSize.width, self.frame.size.height - 50)];
     
     //NSLog(@"setting content width to:%f", (numShowing + 2) * currentMarkerWidth);
 }
@@ -240,6 +247,8 @@
     
     NSLog(@"setting zero time for markers");
     
+    // zero time is the time set for the 
+    
     for (ZNTimeMarkerView *m in timeMarkers) {
         //[m setNewIndex:diffToApply];
         [m setNewZeroTime:currentZeroTime];
@@ -247,6 +256,8 @@
         //            center.x += (centerOffsetX - currentOffset.x);
         //            label.center = [self convertPoint:center toView:labelContainerView];
     }
+    
+    [contentView updateLayout];
 }
 
 - (void)setMarkersToCurrentWidth {
@@ -603,6 +614,8 @@
     
     [self setMarkersToCurrentWidth];
     
+    [contentView updateLayout];
+    
     /*
      if (newSize < 480) {
      newSize = 480;
@@ -708,7 +721,40 @@
 
 
 
+#pragma mark Content Delegate
 
+- (float)xOffsetForTime:(NSDate *)time {
+    
+    // work out the x offset for a specific time by using the zero time, current marker width and marker mode
+    
+    NSTimeInterval secondsOffset = [time timeIntervalSinceDate:currentZeroTime];
+    
+    float xOffset = 0;
+    
+    switch (currentMarkerMode) {
+        case kZNTimelineMarkerModeHour:
+            xOffset = (secondsOffset / 3600) * currentMarkerWidth;
+            break;
+            
+        case kZNTimelineMarkerModeQuarterDay:
+            xOffset = (secondsOffset / 3600 / 6) * currentMarkerWidth;
+            break;
+            
+        case kZNTimelineMarkerModeHalfDay:
+            xOffset = (secondsOffset / 3600 / 12) * currentMarkerWidth;
+            break;
+            
+        case kZNTimelineMarkerModeDay:
+            xOffset = (secondsOffset / 3600 / 24) * currentMarkerWidth;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return xOffset;
+    
+}
 
 
 

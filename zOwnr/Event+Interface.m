@@ -19,6 +19,12 @@
     return [self.eventLocations allObjects];
 }
 
+#pragma mark TimelineRow Protocol
+
+- (NSArray*)cells {
+    return [NSArray arrayWithObject:self];
+}
+
 // startTime and endTime already exist!!
 
 /*

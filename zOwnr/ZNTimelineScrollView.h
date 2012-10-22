@@ -25,7 +25,7 @@ static const float kZNRowHeight = 45.0f;
 
 @end
 
-@interface ZNTimelineScrollView : UIScrollView <UIScrollViewDelegate> {
+@interface ZNTimelineScrollView : UIScrollView <UIScrollViewDelegate, ZNTimelineContentDelegate> {
     
     // markers
     NSMutableArray *timeMarkers;

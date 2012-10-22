@@ -19,6 +19,7 @@
 @interface Event (Timeline) <   ZNMenuView, // shows a menu when selected
                                 ZNTimelineView, // can be root object for a timeline
                                 ZNTimelineRowView, // can be root object for a timeline row
+                                ZNTimelineCellView, // when in a row we just show the event itself as the cell
                                 MKAnnotation, // can be shown on a map 
                                 ZNMapPinView, // view to show on map
                                 ZNSelectable, // can be selected

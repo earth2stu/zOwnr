@@ -18,20 +18,20 @@
     if (self) {
         // Initialization code
         
-        
+        // set default timespan
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         df.dateFormat = @"yyyyMMdd HH:mm";
         df.timeZone = [NSTimeZone localTimeZone];
-        
         NSDate *fromTime = [df dateFromString:@"20110910 00:00"];
         NSDate *toTime = [df dateFromString:@"20110920 00:00"];
         
+        // setup scroll view
         timelineScrollView = [[ZNTimelineScrollView alloc] initWithFrame:frame withDelegate:self];
         [timelineScrollView setTimespanFrom:fromTime to:toTime];
         [self addSubview:timelineScrollView];
         
+        // subscribe to selecting and loading of objects
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSelectObject:) name:kZNChangeSelectionKey object:nil];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoadObject:) name:kZNLoadedSelectionKey object:nil];
         
     }

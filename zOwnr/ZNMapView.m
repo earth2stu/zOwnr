@@ -159,6 +159,9 @@
     [mapView setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 }
 
+- (void)setFinalFrame:(CGRect)frame {
+    
+}
 
 #pragma mark MapViewDelegate
 
@@ -201,7 +204,8 @@
     return view;
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+- (void)mapView:(MKMapView *)theMapView didSelectAnnotationView:(MKAnnotationView *)view {
+    [mapView deselectAnnotation:view.annotation animated:NO];
     if ([view.annotation conformsToProtocol:@protocol(ZNMenuView)]) {
         
         [_delegate openMenuFor:(id<ZNMenuView>)view.annotation];

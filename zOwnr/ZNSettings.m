@@ -133,6 +133,17 @@
     if (CLLocationCoordinate2DIsValid(self.currentZone.pointNW) && CLLocationCoordinate2DIsValid(self.currentZone.pointSE) && self.currentZone.fromTime && self.currentZone.toTime) {
         NSLog(@"changed zone notification");
         [[NSNotificationCenter defaultCenter] postNotificationName:kZNChangeZoneKey object:self.currentZone];
+        
+        if (self.currentSelection == nil || [self.currentSelection isKindOfClass:[EventGroup class]]) {
+            // we have no selection or we are already looking at an eventGroup
+            EventGroup *eg = [[EventGroup alloc] init];
+            eg.fromTime = _currentZone.fromTime;
+            eg.toTime = _currentZone.toTime;
+            eg.pointNW = _currentZone.pointNW;
+            eg.pointSE = _currentZone.pointSE;
+            self.currentSelection = eg;
+        }
+        
     } else {
         NSLog(@"zone set not valid");
     }

@@ -22,6 +22,10 @@
     return self;
 }
 
+- (void)setFinalFrame:(CGRect)frame {
+    
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
